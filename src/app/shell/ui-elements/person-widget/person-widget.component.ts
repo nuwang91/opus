@@ -12,9 +12,13 @@ export class PersonWidgetComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
   }
 
-  
+}
 
+export interface Person {
+  name: string;
+  usertype: string;
+  picture: string;
 }
