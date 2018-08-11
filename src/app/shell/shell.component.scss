@@ -9,11 +9,42 @@
 }
 
 .items-to-left {
-    
+    @include display-flex;
     .logo {
         margin: $small-margin;
         height: 3rem;
         width: auto;
+    }
+
+    .search-wrapper {
+        @include display-flex;
+        @include flex-direction(row);
+        align-items: center;
+        margin-left: 3rem;
+
+        input {
+            background-image: url(../../images/shell/iconmonstr-magnifier-2.svg);
+            background-position: 3% 50%;
+            background-repeat: no-repeat;
+            padding-left: 40px;
+            font-family: $font-family-sans-serif;
+            caret-color: white;
+            color: white;
+        }
+
+        .search-field {
+            height: 3rem;
+            width: 20rem;
+            border-radius: 0.2rem;
+            border: none;
+            background-color: rgba(38, 57, 97, 0.993);
+            font-size: 14px;
+            font-weight: 500;
+
+            &:focus {
+                outline: none;
+            }
+        }
     }
 }
 
