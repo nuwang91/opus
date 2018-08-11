@@ -63,3 +63,43 @@
         }
     }
 }
+
+.nav-wrapper {
+    @include display-flex;
+    @include flex-direction(row);
+    background-color: white;
+    height: 3.5rem;
+    width: 100%;
+    box-shadow: 0 2px 3px -3px lightgray;
+
+    .nav-ul {
+        @include display-flex;
+        @include flex-direction(row);
+        list-style-type: none;
+        width: 100%;
+        justify-content: center;
+        margin: 0;
+        padding: 0;
+
+        li {
+            @include display-flex;
+            @include flex-direction(column);
+            justify-content: center;
+            // height: 100%;
+            margin-right: 2rem;
+            margin-left: 2rem;
+            font-family: $font-family-sans-serif;
+            font-size: 18px;
+            font-weight: 700;
+            color: lightgray;
+
+            &.selected {
+                border-bottom-color: red;
+                border-bottom-style: solid;
+                border-bottom-width: 5px;    
+            }
+        }
+
+        
+    }
+}
