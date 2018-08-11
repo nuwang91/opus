@@ -93,6 +93,10 @@
             font-weight: 700;
             color: lightgray;
 
+            &:hover {
+                cursor: pointer;
+            }
+
             &.selected {
                 border-bottom-color: red;
                 border-bottom-style: solid;
