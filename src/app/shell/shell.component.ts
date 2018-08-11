@@ -7,9 +7,18 @@ import { Component, OnInit } from "@angular/core";
 })
 export class ShellComponent implements OnInit {
 
+  private navigatorIndex: number = 0;
+
   constructor() { }
 
   public ngOnInit(): void {
   }
 
+  public getIndex(): number {
+    return this.navigatorIndex;
+  }
+
+  public navigatorChange(changedTo: number): void {
+    this.navigatorIndex = changedTo;
+  }
 }

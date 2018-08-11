@@ -13,3 +13,10 @@
     </div>
   </div>
 </div>
+<div class="nav-wrapper">
+  <ul class="nav-ul">
+    <li [class.selected]="getIndex() === 1" (click)="navigatorChange(1)">Dashboard</li>
+    <li [class.selected]="getIndex() === 2" (click)="navigatorChange(2)">Tasks</li>
+    <li [class.selected]="getIndex() === 3" (click)="navigatorChange(3)">Attendance</li>
+  </ul>
+</div>
