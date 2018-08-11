@@ -1,6 +1,6 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PersonWidgetComponent } from './person-widget.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { PersonWidgetComponent } from "./person-widget.component";
 
 @NgModule({
   imports: [

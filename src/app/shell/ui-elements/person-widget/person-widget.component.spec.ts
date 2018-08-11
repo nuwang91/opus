@@ -1,8 +1,8 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { PersonWidgetComponent } from './person-widget.component';
+import { PersonWidgetComponent } from "./person-widget.component";
 
-describe('PersonWidgetComponent', () => {
+describe("PersonWidgetComponent", () => {
   let component: PersonWidgetComponent;
   let fixture: ComponentFixture<PersonWidgetComponent>;
 
@@ -19,7 +19,7 @@ describe('PersonWidgetComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });
