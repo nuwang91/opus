@@ -5,6 +5,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginModule } from './login/login.module';
+import { ShellModule } from './shell/shell.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { LoginModule } from './login/login.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    LoginModule
+    LoginModule,
+    ShellModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,34 @@
+@import '../../style/include';
+
+.shell-wrapper {
+    @include display-flex;
+    @include flex-direction(row);
+    background-color: #36486b;
+    height: 4rem;
+    width: 100%;
+}
+
+.items-to-left {
+    
+    .logo {
+        margin: $small-margin;
+        height: 3rem;
+        width: auto;
+    }
+}
+
+.items-to-right {
+    margin-left: auto;
+
+    .right-items-wrapper {
+        @include display-flex;
+        @include flex-direction(row);
+        justify-content: center;
+        height: 100%;
+        margin-right: 2rem;
+
+        img {
+            margin-left: 2rem;
+        }
+    }
+}

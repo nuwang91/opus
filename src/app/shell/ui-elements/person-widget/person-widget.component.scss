@@ -1,0 +1,64 @@
+@import '../../../../style/include';
+
+.container {
+    @include display-flex;
+    @include flex-direction(row);
+    height: 100%;
+}
+
+.content {
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-wrap(nowrap);
+    justify-content: center;
+}
+
+.user-image-container {
+    height: 100%;
+    width: 3.5rem;
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-wrap(nowrap);
+    justify-content: center;
+
+    .circle {
+        height: 3.5rem;
+        width: 3.5rem;
+        border-radius: 50%;
+        background-color: lightgray;
+        overflow: hidden;
+
+        .no-image {
+            height: 100%;
+            width: 100%;
+        }
+
+        .image {
+            width: 100%;
+            height: auto;
+        }
+    }
+}
+
+
+
+.user-info-wrapper {
+    width: 5rem;
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-wrap(nowrap);
+    justify-content: center;
+    margin-left: $small-margin;
+    font-family: $font-family-sans-serif;
+
+    .name {
+        font-size: 14px;
+        color: white;
+    }
+
+    .type {
+        margin-top: $small-margin;
+        font-size: 12px;
+        color: rgb(195, 197, 199);
+    }
+}
