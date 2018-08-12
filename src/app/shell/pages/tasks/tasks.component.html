@@ -3,22 +3,40 @@
         <div class="grid">
             <div class="tasks">Tasks
                 <div class="column">
-                    <ng-container *ngFor="let task of getTasks()">
-                        <app-card class="card" [card]="task"></app-card>
+                    <ng-container *ngFor="let item of getTasks();trackBy:trackByCardId">
+                        <app-card 
+                            #card
+                            class="card" 
+                            (click)="toggleFlip(card)" 
+                            [flipState]="card.flipState" 
+                            [card]="item">
+                        </app-card>
                     </ng-container>
                 </div>
             </div>
             <div class="overdue">Overdue
                 <div class="column">
-                    <ng-container *ngFor="let overdue of getOverdue()">
-                        <app-card class="card" [card]="overdue"></app-card>
+                    <ng-container *ngFor="let item of getOverdue();trackBy:trackByCardId">
+                        <app-card 
+                            #card 
+                            class="card" 
+                            (click)="toggleFlip(card)" 
+                            [flipState]="card.flipState" 
+                            [card]="item">
+                        </app-card>
                     </ng-container>
                 </div>
             </div>
             <div class="completed">Completed
                 <div class="column">
-                    <ng-container *ngFor="let completed of getCompleted()">
-                        <app-card class="card" [card]="completed"></app-card>
+                    <ng-container *ngFor="let item of getCompleted();trackBy:trackByCardId">
+                        <app-card 
+                            #card 
+                            class="card" 
+                            (click)="toggleFlip(card)" 
+                            [flipState]="card.flipState" 
+                            [card]="item">
+                        </app-card>
                     </ng-container>
                 </div>
             </div>

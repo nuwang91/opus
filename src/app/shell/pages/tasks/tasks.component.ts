@@ -1,5 +1,5 @@
-import { Component, OnInit } from "@angular/core";
-import { CardInterface } from "../../ui-elements/card/card.component";
+import { Component, OnInit, ChangeDetectorRef } from "@angular/core";
+import { CardInterface, CardComponent } from "../../ui-elements/card/card.component";
 import { CARDS } from "../../../../mock-data/mock-tasks";
 
 @Component({
@@ -9,7 +9,7 @@ import { CARDS } from "../../../../mock-data/mock-tasks";
 })
 export class TasksComponent implements OnInit {
 
-  constructor() { }
+  constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   private allCards: CardInterface[] = CARDS;
 
@@ -29,4 +29,17 @@ export class TasksComponent implements OnInit {
     return this.allCards.filter((card: CardInterface) => card.type === "completed");
   }
 
+
+  public toggleFlip(card: CardComponent): void {
+    if (card.flipState === "inactive") {
+      card.flipState = "active";
+    } else {
+      card.flipState = "inactive";
+    }
+    this.changeDetectorRef.markForCheck();
+  }
+
+  public trackByCardId(index: number, card: CardInterface): any {
+    return card.id;
+  }
 }

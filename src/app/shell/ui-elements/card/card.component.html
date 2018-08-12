@@ -1,5 +1,5 @@
-<div class="card-container">
-    <div class="card-info">
+<div class="card-container" [@flipState]="flipState">
+    <div *ngIf="flipState === 'inactive'" class="card-info">
         <div class="info-icon">
             <img src="../../../../images/shell/iconmonstr-magnifier-2.svg">
         </div>
@@ -8,7 +8,7 @@
             <span class="sub-text">{{cardData.subText}}</span>
         </div>
     </div>
-    <div class="card-footer" [style.background-color]="getColor()">
+    <div *ngIf="flipState === 'inactive'" class="card-footer" [style.background-color]="getColor()">
         <div class="footer-left">
             <img src="../../../../images/shell/iconmonstr-magnifier-2.svg">
             <span *ngIf="cardData.daysleft" class="text">{{cardData.daysleft}} Days Left</span>
@@ -16,5 +16,8 @@
         <div class="footer-right">
             <span class="day">{{cardData.date}}</span>
         </div>
+    </div>
+    <div *ngIf="flipState === 'active'" class="card-back" [style.background-color]="getLightColor()">
+
     </div>
 </div>
