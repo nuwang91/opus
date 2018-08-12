@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { transition, trigger, style, animate } from "../../../../../node_modules/@angular/animations";
+import { trigger, style, transition, animate } from "@angular/animations";
 
 @Component({
   selector: "app-card",
