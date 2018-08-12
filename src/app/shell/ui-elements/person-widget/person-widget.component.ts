@@ -7,7 +7,7 @@ import { Component, OnInit } from "@angular/core";
 })
 export class PersonWidgetComponent implements OnInit {
 
-  public person: Person = {
+  public person: PersonInterface = {
     name: "Bill Gates",
     usertype: "Admin",
     picture: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRZ4dm9USa9L-OYLcjgvTjZ5TnfxLRSs1stSugJ2YkRlM48xmg6kw"
@@ -20,7 +20,7 @@ export class PersonWidgetComponent implements OnInit {
 
 }
 
-export interface Person {
+export interface PersonInterface {
   name: string;
   usertype: string;
   picture?: string;

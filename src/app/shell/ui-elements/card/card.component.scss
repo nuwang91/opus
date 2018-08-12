@@ -1,0 +1,105 @@
+@import "../../../../style/include";
+
+.card-container {
+    font-family: $font-family-sans-serif;
+    box-shadow: 0px 0px 10px 3px lightgray;
+    height: 10rem;
+    width: 100%;
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-wrap(nowrap);
+}
+
+.card-info {
+    height: 70%;
+    background-color: white;
+    border-top-right-radius: 0.3rem;
+    border-top-left-radius: 0.3rem;
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(nowrap);
+
+    .info-icon {
+        @include display-flex;
+        @include flex-direction(column);
+        @include flex-wrap(wrap);
+        justify-content: center;
+        width: 10%;
+    }
+
+    .info-data {
+        @include display-flex;
+        @include flex-direction(column);
+        @include flex-wrap(wrap);
+        justify-content: center;
+        width: 90%;
+
+        .main-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: gray;
+            // @include text-overflow;
+            white-space: normal;
+        }
+
+        .sub-text {
+            font-size: 10px;
+            font-weight: 400;
+            color: lightgray;
+            margin-top: $base-gutter;
+            white-space: normal;
+        }
+    }
+}
+
+.card-footer {
+    border-bottom-right-radius: 0.3rem;
+    border-bottom-left-radius: 0.3rem;
+    height: 30%;
+
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(nowrap);
+    justify-content: flex-start;
+
+    .footer-left {
+        height: 100%;
+        @include display-flex;
+        @include flex-direction(row);
+        @include flex-wrap(nowrap);
+
+        img {
+            margin-left: 0.9rem;
+        }
+
+        .text {
+            margin-left: $base-gutter;
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+            // @include text-overflow;
+            white-space: normal;
+            @include display-flex;
+            @include flex-direction(column);
+            @include flex-wrap(wrap);
+            justify-content: center;
+        }
+    }
+
+    .footer-right {
+        margin-left: auto;
+        @include display-flex;
+        @include flex-direction(column);
+        @include flex-wrap(wrap);
+        justify-content: center;
+        margin-right: 2rem;
+
+        .day {
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            // @include text-overflow;
+            white-space: normal;
+        }
+    }
+}

@@ -1,0 +1,20 @@
+<div class="card-container">
+    <div class="card-info">
+        <div class="info-icon">
+            <img src="../../../../images/shell/iconmonstr-magnifier-2.svg">
+        </div>
+        <div class="info-data">
+            <span class="main-text">{{cardData.mainText}}</span>
+            <span class="sub-text">{{cardData.subText}}</span>
+        </div>
+    </div>
+    <div class="card-footer" [style.background-color]="getColor()">
+        <div class="footer-left">
+            <img src="../../../../images/shell/iconmonstr-magnifier-2.svg">
+            <span *ngIf="cardData.daysleft" class="text">{{cardData.daysleft}} Days Left</span>
+        </div>
+        <div class="footer-right">
+            <span class="day">{{cardData.date}}</span>
+        </div>
+    </div>
+</div>
