@@ -48,7 +48,7 @@
     @include flex-direction(column);
     @include flex-wrap(nowrap);
     justify-content: center;
-    margin-left: $small-margin;
+    margin-left: $base-gutter;
     font-family: $font-family-sans-serif;
 
     .name {
@@ -57,7 +57,7 @@
     }
 
     .type {
-        margin-top: $small-margin;
+        margin-top: $base-gutter;
         font-size: 12px;
         color: rgb(195, 197, 199);
     }

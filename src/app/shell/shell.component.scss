@@ -1,17 +1,30 @@
 @import "../../style/include";
 
+.all-wrapper {
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-wrap(wrap);
+    width: 100%;
+    overflow: hidden;
+}
+
+.fixed-header {
+    position: fixed;
+    width: 100%;
+}
+
 .shell-wrapper {
     @include display-flex;
     @include flex-direction(row);
     background-color: #36486b;
-    height: 4rem;
+    height: $shell-header-height;
     width: 100%;
 }
 
 .items-to-left {
     @include display-flex;
     .logo {
-        margin: $small-margin;
+        margin: $base-gutter;
         height: 3rem;
         width: auto;
     }
@@ -68,9 +81,10 @@
     @include display-flex;
     @include flex-direction(row);
     background-color: white;
-    height: 3.5rem;
+    height: $navigator-height;
     width: 100%;
-    box-shadow: 0 2px 3px -3px lightgray;
+    box-shadow: 0 4px 3px -3px lightgray;
+    z-index: 3;
 
     .nav-ul {
         @include display-flex;
@@ -106,4 +120,10 @@
 
         
     }
+}
+
+.tasks {
+    margin-top: calc(#{$navigator-height} + #{$shell-header-height});
+    flex-grow: 1;
+    flex-basis: 0;
 }

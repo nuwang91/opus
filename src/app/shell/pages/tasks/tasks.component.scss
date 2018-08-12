@@ -1,0 +1,37 @@
+@import "../../../../style/include";
+
+.grid-layout {
+    // height: 100%;
+    padding: 1rem;
+}
+
+.grid {
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(nowrap);
+    // height: 100%;
+}
+
+.tasks,
+.overdue,
+.completed {
+    flex: 1;
+    font-family: $font-family-sans-serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: darkslategrey;
+}
+
+.column {
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    margin-top: 2rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.card {
+    width: 100%;
+    margin-bottom: 2rem;
+}
