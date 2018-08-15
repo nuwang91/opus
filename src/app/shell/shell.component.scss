@@ -99,6 +99,7 @@
         li {
             @include display-flex;
             @include flex-direction(column);
+            @include user-select(none);
             justify-content: center;
             // height: 100%;
             margin-right: 2rem;
