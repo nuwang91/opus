@@ -45,3 +45,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+@mixin user-select($mode: none) {
+    -moz-user-select: $mode;
+    -ms-user-select: $mode;
+    -webkit-user-select: $mode;
+    user-select: $mode;
+}
