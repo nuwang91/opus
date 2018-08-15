@@ -6,6 +6,7 @@
     @include flex-wrap(wrap);
     width: 100%;
     overflow: hidden;
+    height: 100%;//check Later ... ?
 }
 
 .fixed-header {
@@ -116,14 +117,12 @@
                 border-bottom-style: solid;
                 border-bottom-width: 5px;    
             }
+
+            &:focus {
+                outline: none;
+            }
         }
 
         
     }
-}
-
-.tasks {
-    margin-top: calc(#{$navigator-height} + #{$shell-header-height});
-    flex-grow: 1;
-    flex-basis: 0;
 }

@@ -18,6 +18,12 @@
         </div>
     </div>
     <div *ngIf="flipState === 'active'" class="card-back" [style.background-color]="getLightColor()">
-
+        <div class="info-left">
+            <span class="large-text">Complete Card</span>
+            <span class="small-text">{{cardData.subText}}</span>
+        </div>
+        <div class="slider-right">
+            <app-slider class="slide-toggle"></app-slider>
+        </div>
     </div>
 </div>
