@@ -1,0 +1,85 @@
+@import "../../../../style/include";
+
+:host-context(app-attendance) {
+    margin-top: calc(#{$navigator-height} + #{$shell-header-height});
+    flex-grow: 1;//Remaining space distrubuted equally
+    flex-basis: 0;//Extra space ignored
+    width: 100%;
+}
+
+.grid-wrapper {
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-wrap(wrap);
+    height: 100%;
+}
+
+.items-to-left {
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    align-content: flex-start;
+    width: 65%;
+    height: 100%;
+
+    .top-box {
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        height: 12rem;
+        width: 100%;
+    }
+
+    .bottom-box {
+        margin-bottom: 2rem;
+        margin-left: 2rem;
+        margin-right: 2rem;
+        height: 20rem;
+        width: 100%;
+    }
+}
+
+.items-to-right {
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    align-content: flex-start;
+    width: 35%;
+    height: 100%;
+
+    .top-box {
+        @include display-flex;
+        @include flex-direction(row);
+        @include flex-wrap(nowrap);
+        justify-content: flex-start;
+        margin-top: 4rem;
+        margin-bottom: 2rem;
+        margin-right: 2rem;
+        width: 100%;
+
+        .year-wrapper {
+            width: calc(50% - 1rem);
+            height: 6rem;
+        }
+
+        .month-wrapper {
+            width: calc(50% - 1rem);
+            height: 6rem;
+            margin-left: auto;
+        }
+    }
+
+    .bottom-box {
+        margin-bottom: 2rem;
+        margin-right: 2rem;
+        height: 26rem;
+        width: 100%;
+    }
+}
+
+.common {
+    background-color: white;
+    box-shadow: 0px 0px 10px 1px lightgray;
+    border-radius: 0.2rem;
+}

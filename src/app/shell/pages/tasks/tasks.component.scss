@@ -1,5 +1,13 @@
 @import "../../../../style/include";
 
+:host-context(app-tasks) {
+    margin-top: calc(#{$navigator-height} + #{$shell-header-height});
+    flex-grow: 1;
+    flex-basis: 0;
+    width: 100%;
+    overflow-y: auto;
+}
+
 .grid-layout {
     // height: 100%;
     padding: 1rem;

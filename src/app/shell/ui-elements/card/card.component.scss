@@ -105,5 +105,56 @@
 }
 
 .card-back {
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(nowrap);
     height: 100%;
+
+    .info-left {
+        flex: 1;
+        @include display-flex;
+        @include flex-direction(column);
+        @include flex-wrap(wrap);
+        // background-color: purple;
+        justify-content: center;
+        
+        .large-text {
+            margin-left: calc(#{$base-gutter} * 2);
+            font-size: 22px;
+            font-weight: 700;
+            color: white;
+            
+        }
+
+        .small-text {
+            margin-left: calc(#{$base-gutter} * 2);
+            font-size: 12px;
+            font-weight: 700;
+            color: white;
+            white-space: normal;
+            
+        }
+    }
+
+    .slider-right {
+        flex: 1;
+        @include display-flex;
+        @include flex-direction(column);
+        @include flex-wrap(wrap);
+        justify-content: center;
+
+        .slide-toggle {
+            align-self: center;
+            
+        }
+    }
 }
+
+
+// -webkit-backface-visibility: hidden;
+//             backface-visibility: hidden;
+//             -webkit-perspective: 1000;
+//             perspective: 1000;
+//     -webkit-transform-style: preserve-3d;
+//     transform-style: preserve-3d;
+//     -webkit-transform:translate3d(0,0,0);
