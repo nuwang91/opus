@@ -9,6 +9,8 @@ export class AttendanceComponent implements OnInit {
 
   constructor() { }
 
+  public testOptions: string[] = ["Absent", "Casual", "Annual", "Medical"]
+
   public ngOnInit(): void {
   }
 
