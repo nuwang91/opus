@@ -6,6 +6,7 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LoginModule } from "./login/login.module";
 import { ShellModule } from "./shell/shell.module";
+import { DlDateTimePickerDateModule } from "angular-bootstrap-datetimepicker";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { ShellModule } from "./shell/shell.module";
     BrowserModule,
     BrowserAnimationsModule,
     LoginModule,
-    ShellModule
+    ShellModule,
+    DlDateTimePickerDateModule
   ],
   providers: [],
   bootstrap: [AppComponent]

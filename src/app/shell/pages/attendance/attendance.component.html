@@ -1,15 +1,38 @@
 <app-container>
   <div class="grid-wrapper">
     <div class="items-to-left">
-      <div class="top-box common"></div>
-      <div class="bottom-box common"></div>
+      <div class="top-box common">
+        <div class="category-wrapper">
+            <span class="common-text">What happen Today Attendance</span>
+            <div class="selector-wrapper">
+              <div class="today-box common">
+                <div class="left-box"></div>
+                <span class="common-text today-text">Today I'm</span>
+              </div>
+              <div class="type-selector-wrapper common">
+                <app-selector [options]="testOptions"></app-selector>
+              </div>
+              <div class="button-wrapper common">
+                <button mat-flat-button [color]="'warn'">LOGIN</button>
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="bottom-box common">
+        <div class="text-area-wrapper">
+            <span class="text-area-heading common-text">Urgent Message</span>
+            <textarea class="text-area" placeholder="Type here" cols="30" rows="10"></textarea>
+        </div>
+      </div>
     </div>
     <div class="items-to-right">
       <div class="top-box">
         <div class="year-wrapper common"></div>
         <div class="month-wrapper common"></div>
       </div>
-      <div class="bottom-box common"></div>
+      <div class="bottom-box common">
+        <dl-date-time-picker></dl-date-time-picker>
+      </div>
     </div>
   </div>
 </app-container>
