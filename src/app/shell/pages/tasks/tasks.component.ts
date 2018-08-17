@@ -12,6 +12,7 @@ export class TasksComponent implements OnInit {
   constructor(private changeDetectorRef: ChangeDetectorRef) { }
 
   private allCards: CardInterface[] = CARDS;
+  private dialogVisible: boolean = false;
 
   public ngOnInit(): void {
 
@@ -41,5 +42,19 @@ export class TasksComponent implements OnInit {
 
   public trackByCardId(index: number, card: CardInterface): any {
     return card.id;
+  }
+
+  public addTask(): void {
+    this.dialogVisible = !this.dialogVisible;
+  }
+
+  public showDialog(): boolean {
+    return this.dialogVisible;
+  }
+
+  public closeDialog(close: boolean): void {
+    if (close) {
+      this.addTask();
+    }
   }
 }

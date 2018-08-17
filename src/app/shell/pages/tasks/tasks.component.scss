@@ -47,3 +47,52 @@
         cursor: pointer;
     }
 }
+
+.add-task {
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(nowrap);
+    width: 100%;
+    height: 4rem;
+    background-color: white;
+    box-shadow: 0px 0px 10px 1px lightgray;
+    border-radius: 0.2rem;
+    margin-bottom: 1rem;
+
+    .add-button {
+        margin-left: 1rem;
+        align-self: center;
+        @include display-flex;
+        @include flex-direction(row);
+        @include flex-wrap(nowrap);
+        height: 1.5rem;
+        width: 1.5rem;
+        border-radius: 50%;
+        border-style: solid;
+        border-width: 2px;
+        border-color: lightblue;
+        font-family: $font-family-sans-serif;
+        font-size: 25px;
+        font-weight: 400;
+        color: lightblue;
+        justify-content: center;
+
+        span {
+            align-self: center;
+        }
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .add-task-text {
+        margin-left: 1rem;
+        font-family: $font-family-sans-serif;
+        font-size: 20px;
+        font-weight: 400;
+        color: darkslategrey;
+        align-self: center;
+    }
+}
+
