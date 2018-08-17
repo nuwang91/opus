@@ -1,8 +1,13 @@
+<app-dialog *ngIf="showDialog()" (close)="closeDialog($event)"></app-dialog>
 <app-container>
     <div class="grid-layout">
         <div class="grid">
             <div class="tasks">Tasks
                 <div class="column">
+                    <div class="add-task">
+                        <div class="add-button" (click)="addTask()"><span>+</span></div>
+                        <span class="add-task-text">Add new task card</span>
+                    </div>
                     <ng-container *ngFor="let item of getTasks();trackBy:trackByCardId">
                         <app-card 
                             #card
