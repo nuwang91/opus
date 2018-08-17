@@ -42,7 +42,6 @@
 .card {
     width: 100%;
     margin-bottom: 2rem;
-
     &:hover {
         cursor: pointer;
     }
@@ -58,8 +57,8 @@
     box-shadow: 0px 0px 10px 1px lightgray;
     border-radius: 0.2rem;
     margin-bottom: 1rem;
-
     .add-button {
+        @include user-select(none);
         margin-left: 1rem;
         align-self: center;
         @include display-flex;
@@ -76,16 +75,13 @@
         font-weight: 400;
         color: lightblue;
         justify-content: center;
-
         span {
             align-self: center;
         }
-
         &:hover {
             cursor: pointer;
         }
     }
-
     .add-task-text {
         margin-left: 1rem;
         font-family: $font-family-sans-serif;
@@ -95,4 +91,3 @@
         align-self: center;
     }
 }
-
