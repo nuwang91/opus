@@ -24,10 +24,20 @@
 
 .items-to-left {
     @include display-flex;
-    .logo {
-        margin: $base-gutter;
-        height: 3rem;
-        width: auto;
+
+    fa-icon {
+        margin-left: 2rem;
+        height: 100%;
+        @include display-flex;
+        justify-content: center;
+
+        ::ng-deep svg {
+            align-self: center;
+        }
+         
+        ::ng-deep .fa-xs {
+            font-size: 2rem;
+        }
     }
 
     .search-wrapper {
@@ -36,8 +46,25 @@
         align-items: center;
         margin-left: 3rem;
 
+        .icon-search {
+            position: absolute;
+            margin-left: $base-gutter;
+            height: 100%;
+            @include display-flex;
+            justify-content: center;
+
+            ::ng-deep svg {
+                align-self: center;
+            }
+             
+            ::ng-deep .fa-xs {
+                font-size: 1.5rem;
+            }
+
+        }
+
         input {
-            background-image: url(../../images/shell/iconmonstr-magnifier-2.svg);
+            // background-image: url(../../images/shell/iconmonstr-magnifier-2.svg);
             background-position: 3% 50%;
             background-repeat: no-repeat;
             padding-left: 40px;
@@ -72,8 +99,23 @@
         height: 100%;
         margin-right: 2rem;
 
-        img {
+        fa-icon {
             margin-left: 2rem;
+            height: 100%;
+            @include display-flex;
+            justify-content: center;
+    
+            ::ng-deep svg {
+                align-self: center;
+            }
+             
+            ::ng-deep .fa-xs {
+                font-size: 1.5rem;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
         }
     }
 }

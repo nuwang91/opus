@@ -2,16 +2,17 @@
   <div class="fixed-header">
   <div class="shell-wrapper">
     <div class="items-to-left">
-      <img class="logo" src="../../images/shell/iconmonstr-fast-food-2.svg">
+      <fa-icon [icon]="cogs" size="xs"></fa-icon>
       <div class="search-wrapper">
+          <fa-icon class="icon-search" [icon]="search" size="xs"></fa-icon>
           <input class="search-field" placeholder="Search Cards" type="search">
       </div>
     </div>
     <div class="items-to-right">
       <div class="right-items-wrapper">
         <app-person-widget></app-person-widget>
-        <img src="../../images/shell/iconmonstr-speech-bubble-23.svg">
-        <img src="../../images/shell/iconmonstr-menu-11.svg"> 
+        <fa-icon [icon]="comments" size="xs"></fa-icon>
+        <fa-icon [icon]="ellipsisV" size="xs"></fa-icon>
       </div>
     </div>
   </div>
