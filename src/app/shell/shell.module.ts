@@ -5,6 +5,7 @@ import { PersonWidgetModule } from "./ui-elements/person-widget/person-widget.mo
 import { TasksModule } from "./pages/tasks/tasks.module";
 import { ShellRoutingModule } from "./shell-routing.module";
 import { AttendanceModule } from "./pages/attendance/attendance.module";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import { AttendanceModule } from "./pages/attendance/attendance.module";
     PersonWidgetModule,
     TasksModule,
     ShellRoutingModule,
-    AttendanceModule
+    AttendanceModule,
+    FontAwesomeModule
   ],
   exports: [ShellComponent],
   declarations: [ShellComponent]

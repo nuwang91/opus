@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { faEllipsisV, faComments, faCogs, faSearch } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-shell",
@@ -8,6 +9,11 @@ import { Component, OnInit } from "@angular/core";
 export class ShellComponent implements OnInit {
 
   private navigatorIndex: number = 0;
+  public ellipsisV: any = faEllipsisV;
+  public comments: any = faComments;
+  public cogs: any = faCogs;
+  public search: any = faSearch;
+
 
   constructor() { }
 

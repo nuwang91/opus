@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { trigger, style, transition, animate } from "@angular/animations";
+import { faExclamationTriangle, faCommentAlt } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-card",
@@ -15,6 +16,9 @@ import { trigger, style, transition, animate } from "@angular/animations";
   ])]
 })
 export class CardComponent implements OnInit {
+
+  public exclamationTriangle: any = faExclamationTriangle;
+  public commentAlt: any = faCommentAlt;
 
   public cardData: CardInterface = {
     id: "ID1010",
