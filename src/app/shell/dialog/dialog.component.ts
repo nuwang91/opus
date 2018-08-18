@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from "@angular/core";
+import { faPencilAlt, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-dialog",
@@ -11,6 +12,10 @@ export class DialogComponent implements OnInit {
   public close: EventEmitter<boolean> = new EventEmitter<boolean>();
 
   constructor() { }
+
+  public pencilAlt: any = faPencilAlt;
+  public trashAlt: any = faTrashAlt;
+
 
   public projects: Array<{ id: number, name: string }> = [
     { id: 1, name: "Dialog Mega Run" },
@@ -36,6 +41,14 @@ export class DialogComponent implements OnInit {
 
   public closeDialog(): void {
     this.close.emit(true);
+  }
+
+  public editTask(): void {
+    console.log("EDIT");
+  }
+
+  public deleteTask(): void {
+    console.log("DELETE");
   }
 
 }
