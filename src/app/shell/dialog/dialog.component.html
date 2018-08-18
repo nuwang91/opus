@@ -1,8 +1,41 @@
-<div class="dialog-container">
-  <div class="dialog-content-wrapper">
-    <div class="items-to-left"></div>
-    <div class="items-to-right">
-        <div class="close-button" (click)="closeDialog()"><span>&times;</span></div>
+<div class="ng-dialog-container">
+  <div class="ng-dialog-content-wrapper">
+    <div class="ng-dialog-items-to-left">
+      <div class="ng-dialog-items-to-left-wrapper">
+        <span class="ng-dialog-title">Task Card Add</span>
+        <div class="ng-dialog-user-name-wrapper">
+            <label class="ng-label">User Name</label>
+            <!-- www.npmjs.com/package/@ng-select/ng-select -->
+            <ng-select [items]="users" bindLabel="name" placeholder="Add User here" [(ngModel)]="selectedUser">
+            </ng-select>
+        </div>
+        <div class="ng-dialog-task-name-wrapper">
+          <label class="ng-label">Task Name</label>
+          <input class="ng-input" placeholder="Add Task name here" type="text">
+        </div>
+        <div class="ng-dialog-project-name-wrapper">
+          <label class="ng-label">Project Name</label>
+          <!-- www.npmjs.com/package/@ng-select/ng-select -->
+          <ng-select [items]="projects" bindLabel="name" placeholder="Add Project here" [(ngModel)]="selectedProject">
+          </ng-select>
+        </div>
+        <div class="ng-dialog-due-date-wrapper">
+            <label class="ng-label">Due Date</label>
+            <!-- https://material.angular.io/components/datepicker/overview -->
+            <mat-form-field>
+                <input matInput placeholder="Add Due Date here" [matDatepicker]="myDatepicker">
+                <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker #myDatepicker></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <!-- https://material.angular.io/components/button/overview -->
+        <div class="ng-dialog-button">
+            <button mat-flat-button>Add card</button>
+        </div>
+      </div>
+    </div>
+    <div class="ng-dialog-items-to-right">
+      <div class="ng-dialog-close-button" (click)="closeDialog()"><span>&times;</span></div>
     </div>
   </div>
 </div>
