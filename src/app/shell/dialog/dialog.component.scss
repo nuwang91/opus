@@ -232,6 +232,22 @@
             height: 2.5rem;
         }
     }
+
+    .ng-dialog-icons {
+        @include display-flex;
+        @include flex-direction(row);
+        @include flex-wrap(nowrap);
+        margin-left: auto;
+        margin-bottom: 1rem;
+
+        fa-icon {
+            margin-left: $base-gutter;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
 }
 
 .ng-label {

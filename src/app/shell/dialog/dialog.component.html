@@ -3,6 +3,10 @@
     <div class="ng-dialog-items-to-left">
       <div class="ng-dialog-items-to-left-wrapper">
         <span class="ng-dialog-title">Task Card Add</span>
+        <div class="ng-dialog-icons">
+            <fa-icon (click)="editTask()" [icon]="pencilAlt"></fa-icon>
+            <fa-icon (click)="deleteTask()" [icon]="trashAlt"></fa-icon>
+        </div>
         <div class="ng-dialog-user-name-wrapper">
             <label class="ng-label">User Name</label>
             <!-- www.npmjs.com/package/@ng-select/ng-select -->
@@ -32,6 +36,7 @@
         <div class="ng-dialog-button">
             <button mat-flat-button>Add card</button>
         </div>
+        
       </div>
     </div>
     <div class="ng-dialog-items-to-right">
