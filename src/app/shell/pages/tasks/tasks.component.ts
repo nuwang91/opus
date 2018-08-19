@@ -44,7 +44,7 @@ export class TasksComponent implements OnInit {
     return card.id;
   }
 
-  public addTask(): void {
+  public addCard(): void {
     this.dialogVisible = !this.dialogVisible;
   }
 
@@ -54,7 +54,7 @@ export class TasksComponent implements OnInit {
 
   public closeDialog(close: boolean): void {
     if (close) {
-      this.addTask();
+      this.addCard();
     }
   }
 }

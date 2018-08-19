@@ -79,3 +79,80 @@ export const CARDS: CardInterface[] = [
         type: "overdue"
     }
 ];
+
+export const CARDSSMALL: CardInterface[] = [
+    {
+        id: "ID1000",
+        date: "June 29th 2018",
+        mainText: "Task Number One",
+        subText: "Project Number One",
+        daysleft: 1,
+        type: "tasks"
+    },
+    {
+        id: "ID1003",
+        date: "June 29th 2018",
+        mainText: "Task Number Two",
+        subText: "Project Number Two",
+        type: "completed"
+    },
+    {
+        id: "ID1007",
+        date: "June 29th 2018",
+        mainText: "Task Number Three",
+        subText: "Project Number Three",
+        daysleft: 5,
+        type: "overdue"
+    }
+];
+
+
+export const CARDSSMALL2: CardInterface[] = [
+    {
+        id: "ID1000",
+        date: "June 29th 2018",
+        mainText: "Task Number One",
+        subText: "Project Number One",
+        daysleft: 1,
+        type: "tasks"
+    },
+    {
+        id: "ID1003",
+        date: "June 29th 2018",
+        mainText: "Task Number Two",
+        subText: "Project Number Two",
+        type: "completed"
+    },
+    {
+        id: "ID1007",
+        date: "June 29th 2018",
+        mainText: "Task Number Three",
+        subText: "Project Number Three",
+        daysleft: 5,
+        type: "overdue"
+    },
+    {
+        id: "ID1008",
+        date: "June 29th 2018",
+        mainText: "Task Number Three",
+        subText: "Project Number Three",
+        daysleft: 5,
+        type: "overdue"
+    },
+    {
+        id: "ID1009",
+        date: "June 29th 2018",
+        mainText: "Task Number Three",
+        subText: "Project Number Three",
+        daysleft: 5,
+        type: "overdue"
+    },
+    {
+        id: "ID1010",
+        date: "June 29th 2018",
+        mainText: "Task Number Three",
+        subText: "Project Number Three",
+        daysleft: 5,
+        type: "overdue"
+    }
+];

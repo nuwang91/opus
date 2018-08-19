@@ -31,7 +31,7 @@
     @include display-flex;
     @include flex-direction(column);
     @include flex-wrap(nowrap);
-    background-color: green;
+    // background-color: green;
     width: calc(100% - 22rem);
 }
 
@@ -73,7 +73,7 @@
     }
 }
 
-.ng-vertical-list {
+.ng-vertical-list-people {
     @include display-flex;
     @include flex-direction(column);
     @include flex-wrap(nowrap);
@@ -85,5 +85,67 @@
     .ng-person-block {
         height: 7rem;
         border-bottom: 1px solid lightgray;
+    }
+}
+
+.ng-vertical-list-events {
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+    // height: 100%;
+    overflow-y: auto; 
+    overflow-x: auto;
+    // width: 100%;
+    // background-color: white;
+
+    .ng-person-block {
+        height: 7rem;
+        // background-color: purple;
+        // border-bottom: 1px solid lightgray;
+        width: 100%;
+
+        @include display-flex;
+        @include flex-direction(row);
+        @include flex-wrap(nowrap);
+        // overflow-x: auto;
+
+        position: relative; // Added for +
+
+        .ng-event-block {
+            // width: 7rem;
+            // height: 100%;
+            // margin-right: $base-gutter;
+            min-width: 15rem;
+            // width: 17rem;
+            padding: 5px 10px 5px 10px;
+
+            // background-color: aquamarine;
+        }
+
+        .ng-icon-add {
+            margin-left: calc(100% - 2rem);
+            color: black;
+            position: absolute;
+            // margin-left: $base-gutter;
+            height: 100%;
+            @include display-flex;
+
+            ::ng-deep svg {
+                align-self: center;
+            }
+            ::ng-deep .fa-xs {
+                font-size: 1rem;
+            }
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.ng-card {
+    &:hover {
+        cursor: pointer;
     }
 }

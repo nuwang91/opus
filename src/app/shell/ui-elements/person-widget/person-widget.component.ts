@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
+import { CardInterface } from "../card/card.component";
 
 @Component({
   selector: "app-person-widget",
@@ -42,4 +43,5 @@ export interface PersonInterface {
   usertype: string;
   designation?: string;
   picture?: string;
+  events?: Array<CardInterface>;
 }
