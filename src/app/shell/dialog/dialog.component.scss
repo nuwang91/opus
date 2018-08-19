@@ -30,6 +30,10 @@
         @include display-flex;
         @include flex-direction(column);
         @include flex-wrap(nowrap);
+
+        &.ng-detele {
+            justify-content: center;
+        }
     }
 
     .ng-dialog-items-to-right {
@@ -248,6 +252,28 @@
             }
         }
     }
+
+    .ng-dialog-subtitle {
+        font-family: $font-family-sans-serif;
+        font-size: 15px;
+        font-weight: 700;
+        color: lightgray;
+        align-self: center;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    .ng-dialog-delete-button-wrapper {
+        @include display-flex;
+        @include flex-direction(row);
+        @include flex-wrap(nowrap);
+        justify-content: space-evenly;
+
+        .ng-dialog-button {
+            width: 40%;
+        }
+    }
+
 }
 
 .ng-label {

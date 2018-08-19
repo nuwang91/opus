@@ -16,6 +16,8 @@ export class DialogComponent implements OnInit {
   public pencilAlt: any = faPencilAlt;
   public trashAlt: any = faTrashAlt;
 
+  private _deleteState: boolean = false;
+
 
   public projects: Array<{ id: number, name: string }> = [
     { id: 1, name: "Dialog Mega Run" },
@@ -48,7 +50,11 @@ export class DialogComponent implements OnInit {
   }
 
   public deleteTask(): void {
-    console.log("DELETE");
+    this._deleteState = !this._deleteState;
+  }
+
+  public get deleteState(): boolean {
+    return this._deleteState;
   }
 
 }

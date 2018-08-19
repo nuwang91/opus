@@ -1,7 +1,8 @@
 <div class="ng-dialog-container">
   <div class="ng-dialog-content-wrapper">
-    <div class="ng-dialog-items-to-left">
+    <div class="ng-dialog-items-to-left" [class.ng-detele]="deleteState">
       <div class="ng-dialog-items-to-left-wrapper">
+        <ng-container *ngIf="!deleteState">
         <span class="ng-dialog-title">Task Card Add</span>
         <div class="ng-dialog-icons">
             <fa-icon (click)="editTask()" [icon]="pencilAlt"></fa-icon>
@@ -36,7 +37,19 @@
         <div class="ng-dialog-button">
             <button mat-flat-button>Add card</button>
         </div>
-        
+      </ng-container>
+      <ng-container *ngIf="deleteState">
+          <span class="ng-dialog-title">Delete Task</span>
+          <span class="ng-dialog-subtitle">Are you sure you want to<br/> delete this task</span>
+          <div class="ng-dialog-delete-button-wrapper">
+              <div class="ng-dialog-button">
+                  <button mat-flat-button>Decline</button>
+              </div>
+              <div class="ng-dialog-button">
+                  <button mat-flat-button>Accept</button>
+              </div>
+          </div>
+        </ng-container>
       </div>
     </div>
     <div class="ng-dialog-items-to-right">
