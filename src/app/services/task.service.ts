@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-import { Task } from "../_models";
+import { Task } from "../models";
 
 @Injectable()
 export class TaskService {

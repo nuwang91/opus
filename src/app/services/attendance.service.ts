@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-import { Attendance, User } from "../_models";
+import { Attendance, User } from "../models";
 
 @Injectable()
 export class AttendanceService {
