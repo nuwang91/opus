@@ -6,14 +6,14 @@
           <fa-icon class="ng-icon-filter" [icon]="filter" size="xs"></fa-icon>
           <input class="ng-filter-field" placeholder="Filter by Position" type="search">
       </div>
-      <div class="ng-vertical-list-people">
+      <div #ngVerticalListPeople class="ng-vertical-list-people">
           <div class="ng-person-block" *ngFor="let employee of employees;trackBy:trackByEmployeeId">
             <app-person-widget [person]="employee" [listMode]="true"></app-person-widget>
           </div>
       </div>
     </div>
     <div class="ng-vertical-right">
-      <div class="ng-vertical-list-events">
+      <div #ngVerticalListEvents class="ng-vertical-list-events">
         <div (mouseover)="onMouseOver(employee.id)" (mouseleave)="onMouseLeave()" class="ng-person-block" *ngFor="let employee of employees;trackBy:trackByEmployeeId">
           <div class="ng-event-block" *ngFor="let event of employee.events;trackBy:trackByEventId">
             <app-card #card class="ng-card" [card]="event" (click)="toggleFlip(card)" [flipState]="card.flipState" [small]="true"></app-card>
