@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 
-import { Project } from "../_models";
+import { Project } from "../models";
 
 @Injectable()
 export class ProjectService {
