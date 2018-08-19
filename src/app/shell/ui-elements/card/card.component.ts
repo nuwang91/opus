@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { trigger, style, transition, animate } from "@angular/animations";
-import { faExclamationTriangle, faCommentAlt } from "@fortawesome/free-solid-svg-icons";
+import { faExclamationTriangle, faCommentAlt, faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 
 @Component({
   selector: "app-card",
@@ -19,18 +19,25 @@ export class CardComponent implements OnInit {
 
   public exclamationTriangle: any = faExclamationTriangle;
   public commentAlt: any = faCommentAlt;
+  public checkSquare: any = faCheckSquare;
 
-  public cardData: CardInterface = {
-    id: "ID1010",
-    date: "June 29th 2018",
-    mainText: "Task One - Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    subText: "Project One it is a long established fact that a reader",
-    daysleft: 2,
-    type: "tasks"
-  };
+
+  private _card: CardInterface;
 
   @Input()
-  public card: CardInterface = this.cardData;
+  public small: boolean = false;
+
+  // @Input()
+  // public card: CardInterface = this.cardData;
+
+  @Input()
+  public set card(card: CardInterface) {
+    this._card = card;
+  }
+
+  public get card(): CardInterface {
+    return this._card;
+  }
 
   @Input()
   public flipState: string = "inactive";
@@ -43,14 +50,11 @@ export class CardComponent implements OnInit {
   public getColor(): string {
     switch (this.card.type) {
       case "tasks":
-        return "lightblue";
-        break;
+        return "#56C1DE";
       case "overdue":
-        return "red";
-        break;
+        return "#EB554A";
       default:
-        return "lightgreen";
-        break;
+        return "#62C47A";
     }
   }
 
@@ -58,13 +62,24 @@ export class CardComponent implements OnInit {
     switch (this.card.type) {
       case "tasks":
         return "lightblue";
-        break;
       case "overdue":
         return "#e27676";
-        break;
       default:
         return "lightgreen";
-        break;
+    }
+  }
+
+  public getDaysLeft(): string {
+    if (this.card.type !== "completed") {
+      if (this.card.daysleft && this.card.daysleft > 1) {
+        return this.card.daysleft + " Days Left";
+      } else if (this.card.daysleft && this.card.daysleft === 1) {
+        return this.card.daysleft + " Day Left";
+      } else {
+        return "";
+      }
+    } else {
+      return "Task Completed";
     }
   }
 

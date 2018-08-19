@@ -8,6 +8,12 @@
     @include display-flex;
     @include flex-direction(column);
     @include flex-wrap(nowrap);
+
+    &.ng-small {
+        height: 100%;
+        width: 100%;
+        box-shadow: none;
+    }
 }
 
 .card-info {
@@ -18,6 +24,23 @@
     @include display-flex;
     @include flex-direction(row);
     @include flex-wrap(nowrap);
+
+    &.ng-small {
+        @include flex-wrap(wrap);
+        height: 4.5rem;
+        align-content: baseline;
+    }
+
+    .ng-card-header-date {
+        margin-top: $base-gutter;
+        margin-right: $base-gutter;
+        height: 15px;
+        margin-left: auto; 
+        font-size: 10px;
+        font-weight: 700;
+        // @include text-overflow;
+        white-space: normal;   
+    }
 
     .info-icon {
         @include display-flex;
@@ -53,6 +76,11 @@
         // width: 90%;
         width: calc(100% - 3rem);
 
+        &.ng-small {
+            width: 100%;
+            margin-left: 1rem;
+        }
+
         .main-text {
             font-size: 16px;
             font-weight: 700;
@@ -81,11 +109,19 @@
     @include flex-wrap(nowrap);
     justify-content: flex-start;
 
+    &.ng-small {
+        height: calc(100% - 4.5rem);  
+    }
+
     .footer-left {
         height: 100%;
         @include display-flex;
         @include flex-direction(row);
         @include flex-wrap(nowrap);
+
+        &.ng-small {
+            width: 100%;
+        }
 
         fa-icon {
             margin-left: 1rem;
@@ -101,6 +137,12 @@
             ::ng-deep .fa-xs {
                 font-size: 1rem;
             }
+
+            &.ng-small {
+                ::ng-deep .fa-xs {
+                    font-size: 0.7rem;
+                }
+            }
         }
 
         .text {
@@ -114,6 +156,10 @@
             @include flex-direction(column);
             @include flex-wrap(wrap);
             justify-content: center;
+
+            &.ng-small {
+                font-size: 12px;
+            }
         }
     }
 
@@ -140,6 +186,7 @@
     @include flex-direction(row);
     @include flex-wrap(nowrap);
     height: 100%;
+    border-radius: 0.3rem;
 
     .info-left {
         flex: 1;

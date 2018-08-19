@@ -5,7 +5,7 @@
             <div class="tasks">Tasks
                 <div class="column">
                     <div class="add-task">
-                        <div class="add-button" (click)="addTask()"><span>+</span></div>
+                        <div class="add-button" (click)="addCard()"><span>+</span></div>
                         <span class="add-task-text">Add new task card</span>
                     </div>
                     <ng-container *ngFor="let item of getTasks();trackBy:trackByCardId">
