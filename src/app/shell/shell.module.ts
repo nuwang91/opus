@@ -6,6 +6,7 @@ import { TasksModule } from "./pages/tasks/tasks.module";
 import { ShellRoutingModule } from "./shell-routing.module";
 import { AttendanceModule } from "./pages/attendance/attendance.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import { DashboardModule } from "./pages/dashboard/dashboard.module";
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
     TasksModule,
     ShellRoutingModule,
     AttendanceModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    DashboardModule
   ],
   exports: [ShellComponent],
   declarations: [ShellComponent]

@@ -1,0 +1,89 @@
+@import "../../../../style/include";
+
+:host-context(app-dashboard) {
+    margin-top: calc(#{$navigator-height} + #{$shell-header-height});
+    flex-grow: 1;
+    flex-basis: 0;
+    width: 100%;
+    overflow-y: auto;
+    // z-index: -1;
+}
+
+.ng-vertical-axis {
+    overflow-y: auto;
+    // background-color: red;
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(nowrap);
+    height: 100%;
+}
+
+.ng-vertical-left {
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-wrap(nowrap);
+    // background-color: blue;
+    width: 22rem;
+}
+
+.ng-vertical-right {
+    margin-top: 5rem;
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-wrap(nowrap);
+    background-color: green;
+    width: calc(100% - 22rem);
+}
+
+.ng-filter-wrapper {
+    position: relative;
+    height: 5rem;
+    background-color: pink;
+    width: 100%;
+    border-bottom: 1px solid lightgray;
+
+    .ng-icon-filter {
+        color: gray;
+        position: absolute;
+        margin-left: $base-gutter;
+        height: 100%;
+        @include display-flex;
+
+        ::ng-deep svg {
+            align-self: center;
+        }
+        ::ng-deep .fa-xs {
+            font-size: 1.5rem;
+        }
+    }
+
+    .ng-filter-field {
+        padding-left: 40px;
+        height: 100%;
+        width: 100%;
+        font-family: $font-family-sans-serif;
+        caret-color: gray;
+        color: gray;
+        font-size: 15px;
+        border: none;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}
+
+.ng-vertical-list {
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-wrap(nowrap);
+    max-height: 100%;
+    overflow-y: auto; 
+    width: 100%;
+    background-color: white;
+
+    .ng-person-block {
+        height: 7rem;
+        border-bottom: 1px solid lightgray;
+    }
+}

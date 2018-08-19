@@ -1,13 +1,13 @@
 <div class="container">
-    <div class="user-image-container">
-      <div class="circle">
+    <div class="user-image-container" [class.ng-list]="listMode">
+      <div class="circle" [class.ng-list]="listMode">
         <!-- <div class="no-image"></div> -->
         <img class="image" [src]="person.picture">
       </div>
     </div>
 
-    <div class="user-info-wrapper">
-      <span class="name">{{person.name}}</span>
-      <span class="type">{{person.usertype}}</span>
+    <div class="user-info-wrapper" [class.ng-list]="listMode">
+      <span class="name" [class.ng-list]="listMode">{{person.name}}</span>
+      <span class="type" [class.ng-list]="listMode">{{listMode ? '-- ' + person.designation : person.usertype}}</span>
     </div>
 </div>
