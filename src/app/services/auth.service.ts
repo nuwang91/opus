@@ -6,7 +6,7 @@ import { tap , shareReplay} from "rxjs/operators";
 import { User } from "../models";
 
 @Injectable()
-export class LoginService {
+export class AuthService {
     constructor(private http: HttpClient) { }
 
     public acceptInvitation(): any {

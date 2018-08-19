@@ -6,14 +6,13 @@ import { AppComponent } from "./app.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LoginModule } from "./login/login.module";
 import { ShellModule } from "./shell/shell.module";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 
 import { AuthInterceptor } from "./helpers";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HttpClientModule
+    AppComponent
   ],
   imports: [
     BrowserModule,
