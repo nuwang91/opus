@@ -4,19 +4,21 @@
     <img class="image" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTArMxPFY94G8lOyalzKVZ9I09CfxgirMl4IpoLsOQoTO2qjZCJ" alt="">
   </div>
   <div class="login-panel">
-      <form class="login-form" action="">
-          <mat-form-field appearance="fill">
-              <mat-label>EMAIL</mat-label>
-              <input matInput>
-            </mat-form-field>
+      <form [formGroup]= "form" class="login-form" >
+          
+        <mat-form-field appearance="fill">
+            <mat-label>EMAIL</mat-label>
+            <input matInput name="email" formControlName="email">
+        </mat-form-field>
 
-            <mat-form-field appearance="fill">
-                <mat-label>PASSWORD</mat-label>
-                <input matInput type="password">
-            </mat-form-field>
-
-            <button mat-flat-button [color]="'warn'">LOGIN</button>
-      </form>
+        <mat-form-field appearance="fill">
+            <mat-label>PASSWORD</mat-label>
+            <input matInput type="password" name="password" formControlName="password">
+        </mat-form-field>
+            
+        <button mat-flat-button [color]="'warn'" (click)="login()">LOGIN</button>
+        
+    </form>
   </div>
 </div>
 </div>

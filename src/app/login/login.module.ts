@@ -1,3 +1,4 @@
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
@@ -8,7 +9,9 @@ import { MatInputModule } from "@angular/material/input";
   imports: [
     CommonModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [LoginComponent],
   declarations: [LoginComponent]

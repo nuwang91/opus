@@ -1,28 +1,40 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
-
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 import { AppComponent } from "./app.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { LoginModule } from "./login/login.module";
 import { ShellModule } from "./shell/shell.module";
-import { HTTP_INTERCEPTORS } from "@angular/common/http";
+import { HomeComponent } from "./home/home.component";
 
-import { AuthInterceptor } from "./helpers";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+
+import { AuthService } from "./services";
+import { AuthGuard } from "./guards/";
+import { routing } from "./app.routing";
+
+import { AuthInterceptor, fakeBackendProvider } from "./helpers";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     LoginModule,
-    ShellModule
+    HttpClientModule,
+    ShellModule,
+    routing
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    AuthService,
+    AuthGuard,
+    fakeBackendProvider,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }
