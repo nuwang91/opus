@@ -8,10 +8,13 @@ import { faExclamationTriangle, faCommentAlt, faCheckSquare } from "@fortawesome
   styleUrls: ["./card.component.scss"],
   animations: [trigger("flipState", [
     transition("active => inactive", [
-      style({ transform: "rotateY(180deg)" }), animate("500ms ease-out", style({ transform: "rotateY(0deg)" }))
+      style({ transform: "rotateY(180deg)" }),
+      animate("500ms ease-out", style({ transform: "rotateY(0deg)" }))
     ]),
     transition("inactive => active", [
-      style({ transform: "rotateY(0deg)" }), animate("500ms ease-in", style({ transform: "rotateY(180deg)" }))
+      style({ transform: "rotateY(0deg)" }),
+      animate("500ms ease-in", style({ transform: "rotateY(180deg)", backfaceVisibility: "hidden",
+      transformStyle: "preserve-3d" }))
     ])
   ])]
 })

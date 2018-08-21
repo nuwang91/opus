@@ -1,3 +1,20 @@
 @import "include";
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 @import "~@ng-select/ng-select/themes/default.theme.css";
+
+
+html, body {
+    box-sizing: border-box;
+    height: 100vh;
+    max-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+*, *:before, *:after {
+    box-sizing: inherit;
+  }
+
+* {
+    outline: none;
+}

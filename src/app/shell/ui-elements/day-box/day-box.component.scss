@@ -1,0 +1,21 @@
+@import "../../../../style/include";
+
+.ng-day-container {
+    width: 2.3rem;
+    height: 2.3rem;
+    margin: 2px;
+    border-radius: 0.2rem;
+    // background-color: #62C47A;
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(nowrap);
+    justify-content: center;
+    box-shadow: 0 0 1px 1px lightgray;
+}
+
+.ng-day {
+    align-self: center;
+    font-family: $font-family-sans-serif;
+    color: white;
+    font-size: 15px;
+}

@@ -7,6 +7,7 @@ import { ShellRoutingModule } from "./shell-routing.module";
 import { AttendanceModule } from "./pages/attendance/attendance.module";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 import { DashboardModule } from "./pages/dashboard/dashboard.module";
+import { AttendanceAdminModule } from "./pages/attendance-admin/attendance-admin.module";
 
 @NgModule({
   imports: [
@@ -16,7 +17,8 @@ import { DashboardModule } from "./pages/dashboard/dashboard.module";
     ShellRoutingModule,
     AttendanceModule,
     FontAwesomeModule,
-    DashboardModule
+    DashboardModule,
+    AttendanceAdminModule
   ],
   exports: [ShellComponent],
   declarations: [ShellComponent]
