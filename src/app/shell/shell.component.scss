@@ -18,7 +18,7 @@
 .shell-wrapper {
     @include display-flex;
     @include flex-direction(row);
-    background-color: #36486b;
+    background-color: #2A2E43;
     height: $shell-header-height;
     width: 100%;
 }
@@ -65,13 +65,16 @@
         }
 
         input {
-            // background-image: url(../../images/shell/iconmonstr-magnifier-2.svg);
             background-position: 3% 50%;
             background-repeat: no-repeat;
             padding-left: 40px;
             font-family: $font-family-sans-serif;
-            caret-color: white;
-            color: white;
+            caret-color: #A1A3AC;
+            color: #A1A3AC;
+
+            &::placeholder {
+                color: #A1A3AC;
+            }
         }
 
         .search-field {

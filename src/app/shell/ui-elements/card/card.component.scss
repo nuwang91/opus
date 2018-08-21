@@ -187,7 +187,7 @@
     @include flex-wrap(nowrap);
     height: 100%;
     border-radius: 0.3rem;
-
+    
     .info-left {
         flex: 1;
         @include display-flex;
