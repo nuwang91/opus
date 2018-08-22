@@ -94,7 +94,8 @@
 
     .ng-person-block {
         height: 7rem;
-        width: 100%;
+        // width: 100%;
+        width: 100vw;
 
         @include display-flex;
         @include flex-direction(row);
