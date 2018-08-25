@@ -6,10 +6,17 @@ import { AttendanceComponent } from "./pages/attendance/attendance.component";
 import { DashboardComponent } from "./pages/dashboard/dashboard.component";
 
 const routes: Routes = [
-  { path: "", component: ShellComponent },
-  { path: "tasks", component: TasksComponent },
-  { path: "attendance", component: AttendanceComponent },
-  { path: "dashboard", component: DashboardComponent }
+  {
+    path: "", component: ShellComponent, children: [
+      { path: "tasks", component: TasksComponent },
+      { path: "attendance", component: AttendanceComponent },
+      { path: "dashboard", component: DashboardComponent }
+    ]
+  }
+  // ,
+  // { path: "tasks", component: TasksComponent },
+  // { path: "attendance", component: AttendanceComponent },
+  // { path: "dashboard", component: DashboardComponent }
   /*
   {
     path: "",
@@ -33,9 +40,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [ RouterModule.forChild(routes) ],
-  exports: [ RouterModule ]
+  imports: [RouterModule.forChild(routes)],
+  exports: [RouterModule]
 })
-export class ShellRoutingModule {}
+export class ShellRoutingModule { }
 
 // export const routingComponents = [ShellComponent];
