@@ -10,12 +10,32 @@ const routes: Routes = [
   { path: "tasks", component: TasksComponent },
   { path: "attendance", component: AttendanceComponent },
   { path: "dashboard", component: DashboardComponent }
+  /*
+  {
+    path: "",
+    component: DashboardComponent,
+    children: [
+      {
+        path: "tasks",
+        component: TasksComponent
+      },
+      {
+        path: "attendance",
+        component: AttendanceComponent
+      },
+      {
+        path: "dashboard",
+        component: DashboardComponent
+      }
+    ]
+  }
+  */
 ];
 
 @NgModule({
-  imports: [ RouterModule.forRoot(routes) ],
+  imports: [ RouterModule.forChild(routes) ],
   exports: [ RouterModule ]
 })
 export class ShellRoutingModule {}
 
-export const routingComponents = [ShellComponent];
+// export const routingComponents = [ShellComponent];

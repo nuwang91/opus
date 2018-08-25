@@ -1,19 +1,18 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-
-import { AppComponent } from "./app.component";
-import { LoginModule } from "./login/login.module";
 import { ShellModule } from "./shell/shell.module";
-import { HomeComponent } from "./home/home.component";
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from "@angular/core";
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 
-import { AuthService } from "./services";
-import { AuthGuard } from "./guards/";
-import { routing } from "./app.routing";
+import { AppComponent } from "./app.component";
+import { LoginModule } from "./login/login.module";
+import { HomeComponent } from "./home/home.component";
 
+import { AuthService } from "./services";
 import { AuthInterceptor, fakeBackendProvider } from "./helpers";
+import { AuthGuard } from "./auth.guard";
+import { AppRoutingModule } from "./app.routing.module";
 
 @NgModule({
   declarations: [
@@ -25,8 +24,8 @@ import { AuthInterceptor, fakeBackendProvider } from "./helpers";
     BrowserAnimationsModule,
     LoginModule,
     HttpClientModule,
-    ShellModule,
-    routing
+    AppRoutingModule,
+    ShellModule
   ],
   providers: [
     AuthService,
