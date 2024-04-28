@@ -1,0 +1,16 @@
+@import 'direction';
+
+:root {
+    --fnd-static-purple-shell-top-bar-background-color: #883F8E; // TODO: should be tokenized in the future
+    --fnd-static-purple-shell-top-bar-hover-color: #A17BAB;
+
+    --fnd-shell-header-bg-img-ltr: url(~images/backdrops/shell_header_LTR.png) no-repeat;
+    --fnd-shell-header-bg-img-rtl: url(~images/backdrops/shell_header_RTL.png) no-repeat;
+
+    --fnd-shell-header-divider-border: 1px solid;
+
+    --fnd-shell-header-foreground-color: #fff;
+
+    --fnd-shell-active-color: #156181;
+    --fnd-shell-hover-color: #0D709A;
+}

@@ -1,0 +1,59 @@
+@import "typography";
+@import '@ifsworld/granite-icons/assets/fonts/ligature/granite-iconfont-liga.css';
+
+// Supply two alternative font URLs. For Storybook static build, the slash
+// following the tilde would result in a path like C:/style/fonts) and so
+// CI screenshot tests would not find the fonts.
+@include font-face(
+    "Open Sans",
+    "~style/fonts/open-sans-regular", "~style/fonts/open-sans-regular",
+    normal, normal, swap);
+
+@include font-face(
+    "Open Sans",
+    "~style/fonts/open-sans-semibold", "~style/fonts/open-sans-semibold",
+    normal, 600, swap);
+
+@include font-face(
+    "Open Sans",
+    "~style/fonts/open-sans-bold700", "~style/fonts/open-sans-bold700",
+    normal, bold, swap);
+
+body {
+    font-family: $font-family-sans-serif-brandable;
+    font-size: $base-rem;
+    line-height: $base-line-height;
+    font-weight: $font-weight-normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: $font-weight-normal;
+}
+
+h1 {
+    font-size: 1.5rem;
+}
+
+h2 {
+    font-size: 1.35rem;
+}
+
+h3 {
+    font-size: 1.2rem;
+}
+
+h4 {
+    font-size: 1rem;
+}
+
+h5 {
+    font-size: 1rem;
+}
+
+h6 {
+    font-size: 1rem;
+}
+
+button {
+    font-family: $font-family-sans-serif-brandable;
+}

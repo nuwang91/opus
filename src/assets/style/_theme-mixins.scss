@@ -1,0 +1,141 @@
+//$granite-theme-var-props: $tokens;  // Cross-ref to imported design token map
+
+ // TOOD: Should we have media query support on fnd-theme mixin? Some props are different in different media queries.
+ // We could pass a device variable sm/md/lg and then have the mixin genereate css media queries block with different values.
+ // but then we would have to send in multiple values.
+
+/**
+ * The variable mixin takes a property and variable name.
+ * it will also set a fallback value, read from the $granite-theme-var-props (The fallback is for non css-variable browsers)
+ */
+@mixin fnd-theme($prop, $themed-variable, $important: false) {
+        // stamp out css4 variable using syntax: property: var(--the-name);
+        // Note: only drawback of omitting fallback-value is losing IE support
+        @if $important {
+            #{$prop}: var(#{$themed-variable}) !important;
+        } @else {
+            #{$prop}: var(#{$themed-variable});
+        }
+}
+
+ @mixin fnd-themed-background-image-blur() {
+    content: "";
+    position: absolute;
+    @include inset-inline-start(-8px);
+    top: -8px;
+    @include inset-inline-end(-8px);
+    bottom: -8px;
+
+    // Important to set z-index to a non negative value (due to MS Edge bug)
+    // See bug https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/9318580/
+    z-index: 0;
+
+    @include blur(8px);
+}
+
+@mixin fnd-themed-background-image($dim: false) {
+    // Set background image
+    @include fnd-theme(background, --granite-color-background-page);
+    background-size: cover;
+
+    // Dim it?
+    @if $dim {
+        @include fnd-themed-background-image-blur;
+    }
+}
+
+@mixin fnd-themed-lines($prop, $themed-variable-color1, $themed-variable-color2, $distance, $thickness) {
+    #{$prop}: repeating-linear-gradient(
+        0deg,
+        var(#{$themed-variable-color1}),
+        var(#{$themed-variable-color1}) calc(#{$distance} - #{$thickness}),
+        var(#{$themed-variable-color2}) calc(#{$distance} - #{$thickness}),
+        var(#{$themed-variable-color2}) #{$distance}
+    );
+}
+
+@mixin fnd-themed-gradient($direction, $themed-variable-1, $position-1, $themed-variable-2, $position-2) {
+    background: linear-gradient(
+        $direction,
+        var(#{$themed-variable-1}) $position-1,
+        var(#{$themed-variable-2}) $position-2
+    )
+}
+
+/**
+ * Set CSS property background-image to a linear gradient (with support for theming.
+ * Gradients should contain theme color keywords and are translated into
+ * browser compatible CSS variables.
+ */
+@mixin fnd-themed-background-image-gradient(
+        $direction,
+        $granite-color-gradients...
+    ) {
+    $gradients: ();
+
+    @each $color-value, $position in $granite-color-gradients {
+        $gradients: append(
+            $gradients,
+            var(#{$color-value}) $position,
+            $separator: comma
+        );
+    }
+
+    background-image: linear-gradient(
+        $direction,
+        $gradients
+    );
+}
+
+// We use this to create isosceles triangles with support for CSS variables
+// $triangle-size - Used to set border-size. No default, set a px or em size.
+// $themed-variable - CSS variable used to set border-color which makes up triangle. No default
+// $triangle-direction - Used to determine which direction triangle points. Options: up, down, left, right
+@mixin fnd-themed-css-triangle($triangle-size, $themed-variable, $triangle-direction) {
+    border: inset $triangle-size;
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+
+    @if ($triangle-direction == down) {
+        border-color: var(#{$themed-variable}) transparent transparent transparent;
+        border-top-style: solid;
+    }
+    @if ($triangle-direction == up) {
+        border-color: transparent transparent var(#{$themed-variable}) transparent;
+        border-bottom-style: solid;
+    }
+    @if ($triangle-direction == right) {
+        border-color: transparent transparent transparent var(#{$themed-variable});
+        border-left-style: solid;
+    }
+    @if ($triangle-direction == left) {
+        border-color: transparent var(#{$themed-variable}) transparent transparent;
+        border-right-style: solid;
+    }
+
+    @if ($triangle-direction == top-left) {
+        border-color: var(#{$themed-variable}) transparent transparent var(#{$themed-variable});
+        border-top-style: solid;
+        border-left-style: solid;
+    }
+
+    @if ($triangle-direction == top-right) {
+        border-color: var(#{$themed-variable}) var(#{$themed-variable}) transparent transparent;
+        border-top-style: solid;
+        border-right-style: solid;
+    }
+
+    @if ($triangle-direction == bottom-left) {
+        border-color: transparent transparent var(#{$themed-variable}) var(#{$themed-variable});
+        border-bottom-style: solid;
+        border-left-style: solid;
+    }
+
+    @if ($triangle-direction == bottom-right) {
+        border-color: transparent var(#{$themed-variable}) var(#{$themed-variable}) transparent;
+        border-bottom-style: solid;
+        border-right-style: solid;
+    }
+}

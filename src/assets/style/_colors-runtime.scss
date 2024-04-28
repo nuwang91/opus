@@ -1,0 +1,276 @@
+@import 'colors-complimentary';
+
+/* This file contains CSS classes needed in runtime (only) for colors.
+ * Compared to the _colors.scss file which also specifies SASS variables used in
+ * SASS files at coding time.
+ * The difference is important since, we don't want all these classes defined
+ * in this file to be duplicated for different components (with Angular's view encapsulation)
+ */
+
+// Need to define them as CSS variables too, to be able to read them in runtime (in colorService)
+.ifs-color-brand-complementary1 {color: var(--granite-color-dataviz-red-9);}
+.ifs-color-brand-complementary2 {color: var(--granite-color-dataviz-blue-6);}
+.ifs-color-brand-complementary3 {color: var(--granite-color-dataviz-cyan-3);}
+.ifs-color-brand-complementary4 {color: var(--granite-color-dataviz-red-6);}
+.ifs-color-brand-complementary5 {color: var(--granite-color-dataviz-blue-9);}
+.ifs-color-brand-complementary6 {color: var(--granite-color-dataviz-yellow-6);}
+.ifs-color-brand-complementary7 {color: var(--granite-color-dataviz-yellow-3);}
+.ifs-color-brand-complementary8 {color: var(--granite-color-dataviz-yellow-9);}
+.ifs-color-brand-complementary9 {color: var(--granite-color-dataviz-green-9);}
+.ifs-color-brand-complementary10 {color: var(--granite-color-dataviz-green-3);}
+.ifs-color-brand-complementary11 {color: var(--granite-color-dataviz-red-3);}
+
+//states with the idea - 'initial state'
+.ifs-color-contextual-state-created,
+.ifs-color-contextual-state-preliminary,
+.ifs-color-contextual-state-new,                                                  //dark blue
+.ifs-color-contextual-state-open,
+.ifs-color-contextual-state-started {color: var(--granite-color-state-created);}
+
+//'something has started'
+.ifs-color-contextual-state-planned {color: var(--granite-color-state-planned);}               // light-blue
+
+//'something is happening'
+.ifs-color-contextual-state-active,
+.ifs-color-contextual-state-inprogress,
+.ifs-color-contextual-state-changed,
+.ifs-color-contextual-state-prepared,
+.ifs-color-contextual-state-received,                                                //yellow
+.ifs-color-contextual-state-posted,
+.ifs-color-contextual-state-printed,
+.ifs-color-contextual-state-defined,
+.ifs-color-contextual-state-reserved,
+.ifs-color-contextual-state-transferred,
+.ifs-color-contextual-state-acknowledged {color: var(--granite-color-state-in-progress);}
+
+//'someone has authorized it/completed'
+.ifs-color-contextual-state-released,
+.ifs-color-contextual-state-approved,
+.ifs-color-contextual-state-completed,                                              //green
+.ifs-color-contextual-state-confirmed {color: var(--granite-color-state-released);}
+
+//'state to be noted'
+.ifs-color-contextual-state-blocked,
+.ifs-color-contextual-state-hidden,                                                //pink
+.ifs-color-contextual-state-stopped,
+.ifs-color-contextual-state-rejected  {color: var(--granite-color-state-blocked);}
+
+//close
+.ifs-color-contextual-state-closed {color: var(--granite-color-state-closed);}                  //dark gray
+
+.ifs-color-contextual-state-obsolete,
+.ifs-color-contextual-state-cancelled {color: var(--granite-color-state-obsolete);}              //light-gray
+
+//error
+.ifs-color-contextual-state-error {color: var(--granite-color-state-error);}                         //red
+
+//Data Validity
+.ifs-color-contextual-validityactive {color: var(--granite-color-data-validity-active);}
+.ifs-color-contextual-validityhidden {color: var(--granite-color-data-validity-hidden);}
+.ifs-color-contextual-validityblocked {color: var(--granite-color-data-validity-blocked);}
+
+.ifs-color-contextual-ok,
+.ifs-color-contextual-true,
+.ifs-color-contextual-success {
+    color: var(--granite-ifs-color-contextual-success);
+}
+
+.ifs-color-contextual-warning {
+    color: var(--granite-ifs-color-contextual-warning);
+}
+
+.ifs-color-contextual-failure,
+.ifs-color-contextual-error,
+.ifs-color-contextual-false,
+.ifs-color-contextual-danger,
+.ifs-color-contextual-alert {
+    color: var(--granite-ifs-color-contextual-failure);
+    }
+
+.ifs-color-contextual-on,
+.ifs-color-contextual-info,
+.ifs-color-contextual-primary {
+    color: var(--granite-color-signal-info);
+}
+
+.ifs-color-contextual-default,
+.ifs-color-contextual-normal {
+    color: var(--granite-color-signal-default);
+}
+
+.ifs-color-contextual-off,
+.ifs-color-contextual-neutral {
+    color: var(--granite-color-signal-neutral);
+}
+
+.ifs-color-brand-ifs-purple {color: var(--granite-color-ifs-purple);}
+.ifs-color-brand-ifs-black {color: var(--granite-color-ifs-black);}
+.ifs-color-brand-ifs-white {color: var(--granite-color-ifs-white);}
+.ifs-color-brand-ifs-darkwhite {color: var(--granite-color-ifs-white-dark);}
+.ifs-color-brand-ifs-gray {color: var(--granite-color-ifs-gray);}
+.ifs-color-brand-ifs-darkgray {color: var(--granite-color-ifs-gray-dark);}
+.ifs-color-brand-ifs-lightgray {color: var(--granite-color-ifs-gray-light);}
+.ifs-color-brand-ifs-pink {color: var(--granite-color-ifs-pink);}
+.ifs-color-brand-ifs-blue {color: var(--granite-color-ifs-blue);}
+.ifs-color-brand-ifs-lightblue {color: var(--granite-color-ifs-blue-light);}
+.ifs-color-brand-ifs-green {color: var(--granite-color-ifs-green);}
+.ifs-color-brand-ifs-darkgreen {color: var(--granite-color-ifs-dark-green);}
+.ifs-color-brand-ifs-lightgreen {color: var(--granite-color-ifs-green-light);}
+.ifs-color-brand-ifs-red {color: var(--granite-color-ifs-red);}
+.ifs-color-brand-ifs-orange {color: var(--granite-color-ifs-orange);}
+.ifs-color-brand-ifs-darkorange {color: var(--granite-color-ifs-dark-orange);}
+.ifs-color-brand-ifs-yellow {color: var(--granite-color-ifs-yellow);}
+
+.ifs-color-client-light-complementary1 {color: var(--granite-color-categorical-light-1);}
+.ifs-color-client-light-complementary2 {color: var(--granite-color-categorical-light-2);}
+.ifs-color-client-light-complementary3 {color: var(--granite-color-categorical-light-3);}
+.ifs-color-client-light-complementary4 {color: var(--granite-color-categorical-light-4);}
+.ifs-color-client-light-complementary5 {color: var(--granite-color-categorical-light-5);}
+.ifs-color-client-light-complementary6 {color: var(--granite-color-categorical-light-6);}
+.ifs-color-client-light-complementary7 {color: var(--granite-color-categorical-light-7);}
+.ifs-color-client-light-complementary8 {color: var(--granite-color-categorical-light-8);}
+.ifs-color-client-light-complementary9 {color: var(--granite-color-categorical-light-9);}
+.ifs-color-client-light-complementary10 {color: var(--granite-color-categorical-light-10);}
+.ifs-color-client-light-complementary11 {color: var(--granite-color-categorical-light-11);}
+
+.ifs-color-client-picker-colorpicker0 {color: rgba(0, 0, 0, 0.00);}
+.ifs-color-client-picker-colorpicker1 {color: var(--granite-color-ifs-pink);}
+.ifs-color-client-picker-colorpicker2 {color: var(--granite-color-ifs-blue);}
+.ifs-color-client-picker-colorpicker3 {color: var(--granite-color-ifs-green);}
+.ifs-color-client-picker-colorpicker4 {color: var(--granite-color-ifs-red);}
+.ifs-color-client-picker-colorpicker5 {color: var(--granite-color-ifs-dark-blue);}
+.ifs-color-client-picker-colorpicker6 {color: var(--granite-color-ifs-orange);}
+.ifs-color-client-picker-colorpicker7 {color: var(--granite-color-ifs-yellow);}
+.ifs-color-client-picker-colorpicker8 {color: var(--granite-color-ifs-dark-orange);}
+.ifs-color-client-picker-colorpicker9 {color: var(--granite-color-ifs-dark-green);}
+.ifs-color-client-picker-colorpicker10 {color: var(--granite-color-ifs-purple-light);}
+.ifs-color-client-picker-colorpicker11 {color: var(--granite-color-ifs-purple);}
+.ifs-color-client-picker-colorpicker12 {color: var(--granite-color-ifs-green-light);}
+.ifs-color-client-picker-colorpicker13 {color: var(--granite-color-ifs-white);}
+.ifs-color-client-picker-colorpicker14 {color: var(--granite-color-ifs-gray-light);}
+.ifs-color-client-picker-colorpicker15 {color: var(--granite-color-ifs-black-light);}
+.ifs-color-client-picker-colorpicker16 {color: var(--granite-color-ifs-blue-light);}
+.ifs-color-client-picker-colorpicker17 {color: var(--granite-color-ifs-gray-dark);}
+.ifs-color-client-picker-colorpicker18 {color: var(--granite-color-ifs-pink-light);}
+
+.ifs-color-client-light-ok,
+.ifs-color-client-light-true,
+.ifs-color-client-light-success {
+    @extend .ifs-color-client-light-complementary9;
+}
+
+.ifs-color-client-light-warning {
+    @extend .ifs-color-client-light-complementary6;
+}
+
+.ifs-color-client-light-failure,
+.ifs-color-client-light-error,
+.ifs-color-client-light-false,
+.ifs-color-client-light-danger,
+.ifs-color-client-light-alert {
+    @extend .ifs-color-client-light-complementary4;
+}
+
+.ifs-color-client-light-info,
+.ifs-color-client-light-primary {
+    @extend .ifs-color-client-light-complementary2;
+}
+
+.ifs-color-client-light-default,
+.ifs-color-client-light-normal {
+    color: none;
+}
+.ifs-color-client-light-neutral {
+    color: var(--granite-color-ifs-gray-light);
+}
+
+.ifs-color-contextual-progress1 {color: var(--granite-color-ifs-progress-1);}
+.ifs-color-contextual-progress2 {color: var(--granite-color-ifs-progress-2);}
+.ifs-color-contextual-progress3 {color: var(--granite-color-ifs-progress-3);}
+.ifs-color-contextual-progress4 {color: var(--granite-color-ifs-progress-4);}
+.ifs-color-contextual-progress5 {color: var(--granite-color-ifs-progress-5);}
+.ifs-color-contextual-progress6 {color: var(--granite-color-ifs-progress-6);}
+.ifs-color-contextual-progress7 {color: var(--granite-color-ifs-progress-7);}
+.ifs-color-contextual-progress8 {color: var(--granite-color-ifs-progress-8);}
+.ifs-color-contextual-progress9 {color: var(--granite-color-ifs-progress-9);}
+.ifs-color-contextual-progress10 {color: var(--granite-color-ifs-progress-10);}
+.ifs-color-contextual-progress11 {color: var(--granite-color-ifs-progress-11);}
+.ifs-color-contextual-progress12 {color: var(--granite-color-ifs-progress-12);}
+
+
+.ifs-color-palette-dataviz-red1 { color: var(--granite-color-dataviz-red-1); }
+.ifs-color-palette-dataviz-red2 { color: var(--granite-color-dataviz-red-2); }
+.ifs-color-palette-dataviz-red3 { color: var(--granite-color-dataviz-red-3); }
+.ifs-color-palette-dataviz-red4 { color: var(--granite-color-dataviz-red-4); }
+.ifs-color-palette-dataviz-red5 { color: var(--granite-color-dataviz-red-5); }
+.ifs-color-palette-dataviz-red6 { color: var(--granite-color-dataviz-red-6); }
+.ifs-color-palette-dataviz-red7 { color: var(--granite-color-dataviz-red-7); }
+.ifs-color-palette-dataviz-red8 { color: var(--granite-color-dataviz-red-8); }
+.ifs-color-palette-dataviz-red9 { color: var(--granite-color-dataviz-red-9); }
+.ifs-color-palette-dataviz-red10 { color: var(--granite-color-dataviz-red-10); }
+
+
+.ifs-color-palette-dataviz-yellow1 { color: var(--granite-color-dataviz-yellow-1); }
+.ifs-color-palette-dataviz-yellow2 { color: var(--granite-color-dataviz-yellow-2); }
+.ifs-color-palette-dataviz-yellow3 { color: var(--granite-color-dataviz-yellow-3); }
+.ifs-color-palette-dataviz-yellow4 { color: var(--granite-color-dataviz-yellow-4); }
+.ifs-color-palette-dataviz-yellow5 { color: var(--granite-color-dataviz-yellow-5); }
+.ifs-color-palette-dataviz-yellow6 { color: var(--granite-color-dataviz-yellow-6); }
+.ifs-color-palette-dataviz-yellow7 { color: var(--granite-color-dataviz-yellow-7); }
+.ifs-color-palette-dataviz-yellow8 { color: var(--granite-color-dataviz-yellow-8); }
+.ifs-color-palette-dataviz-yellow9 { color: var(--granite-color-dataviz-yellow-9); }
+.ifs-color-palette-dataviz-yellow10 { color: var(--granite-color-dataviz-yellow-10); }
+
+
+.ifs-color-palette-dataviz-green1 { color: var(--granite-color-dataviz-green-1); }
+.ifs-color-palette-dataviz-green2 { color: var(--granite-color-dataviz-green-2); }
+.ifs-color-palette-dataviz-green3 { color: var(--granite-color-dataviz-green-3); }
+.ifs-color-palette-dataviz-green4 { color: var(--granite-color-dataviz-green-4); }
+.ifs-color-palette-dataviz-green5 { color: var(--granite-color-dataviz-green-5); }
+.ifs-color-palette-dataviz-green6 { color: var(--granite-color-dataviz-green-6); }
+.ifs-color-palette-dataviz-green7 { color: var(--granite-color-dataviz-green-7); }
+.ifs-color-palette-dataviz-green8 { color: var(--granite-color-dataviz-green-8); }
+.ifs-color-palette-dataviz-green9 { color: var(--granite-color-dataviz-green-9); }
+.ifs-color-palette-dataviz-green10 { color: var(--granite-color-dataviz-green-10); }
+
+
+.ifs-color-palette-dataviz-cyan1 { color: var(--granite-color-dataviz-cyan-1); }
+.ifs-color-palette-dataviz-cyan2 { color: var(--granite-color-dataviz-cyan-2); }
+.ifs-color-palette-dataviz-cyan3 { color: var(--granite-color-dataviz-cyan-3); }
+.ifs-color-palette-dataviz-cyan4 { color: var(--granite-color-dataviz-cyan-4); }
+.ifs-color-palette-dataviz-cyan5 { color: var(--granite-color-dataviz-cyan-5); }
+.ifs-color-palette-dataviz-cyan6 { color: var(--granite-color-dataviz-cyan-6); }
+.ifs-color-palette-dataviz-cyan7 { color: var(--granite-color-dataviz-cyan-7); }
+.ifs-color-palette-dataviz-cyan8 { color: var(--granite-color-dataviz-cyan-8); }
+.ifs-color-palette-dataviz-cyan9 { color: var(--granite-color-dataviz-cyan-9); }
+.ifs-color-palette-dataviz-cyan10 { color: var(--granite-color-dataviz-cyan-10); }
+
+
+.ifs-color-palette-dataviz-blue1 { color: var(--granite-color-dataviz-blue-1); }
+.ifs-color-palette-dataviz-blue2 { color: var(--granite-color-dataviz-blue-2); }
+.ifs-color-palette-dataviz-blue3 { color: var(--granite-color-dataviz-blue-3); }
+.ifs-color-palette-dataviz-blue4 { color: var(--granite-color-dataviz-blue-4); }
+.ifs-color-palette-dataviz-blue5 { color: var(--granite-color-dataviz-blue-5); }
+.ifs-color-palette-dataviz-blue6 { color: var(--granite-color-dataviz-blue-6); }
+.ifs-color-palette-dataviz-blue7 { color: var(--granite-color-dataviz-blue-7); }
+.ifs-color-palette-dataviz-blue8 { color: var(--granite-color-dataviz-blue-8); }
+.ifs-color-palette-dataviz-blue9 { color: var(--granite-color-dataviz-blue-9); }
+.ifs-color-palette-dataviz-blue10 { color: var(--granite-color-dataviz-blue-10); }
+
+
+.ifs-color-palette-dataviz-purple1 { color: var(--granite-color-dataviz-purple-1); }
+.ifs-color-palette-dataviz-purple2 { color: var(--granite-color-dataviz-purple-2); }
+.ifs-color-palette-dataviz-purple3 { color: var(--granite-color-dataviz-purple-3); }
+.ifs-color-palette-dataviz-purple4 { color: var(--granite-color-dataviz-purple-4); }
+.ifs-color-palette-dataviz-purple5 { color: var(--granite-color-dataviz-purple-5); }
+.ifs-color-palette-dataviz-purple6 { color: var(--granite-color-dataviz-purple-6); }
+.ifs-color-palette-dataviz-purple7 { color: var(--granite-color-dataviz-purple-7); }
+.ifs-color-palette-dataviz-purple8 { color: var(--granite-color-dataviz-purple-8); }
+.ifs-color-palette-dataviz-purple9 { color: var(--granite-color-dataviz-purple-9); }
+.ifs-color-palette-dataviz-purple10 { color: var(--granite-color-dataviz-purple-10); }
+
+.ifs-color-palette-signal-ok { color: var(--granite-color-signal-ok); }
+.ifs-color-palette-signal-warning { color: var(--granite-color-signal-warning); }
+.ifs-color-palette-signal-info { color: var(--granite-color-signal-info); }
+.ifs-color-palette-signal-failure { color: var(--granite-color-signal-failure); }
+

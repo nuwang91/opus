@@ -1,0 +1,686 @@
+$global: true;
+@use 'index' as graniteStyles;
+
+@import 'legacy-tokens-css';
+@import 'legacy-tokens-variables';
+
+@import '@ifsworld/granite-tokens/design-tokens/light/tokens';
+
+@import 'include';
+
+@import 'colors-runtime';
+
+@import 'reset';
+@import 'dialog';
+@import 'icons/icons';
+@import 'zindex';
+
+@import 'typography-runtime';
+@import '@angular/cdk/overlay-prebuilt.css';
+
+@include graniteStyles.granite-overlay-dark-glass-backdrop;
+@include graniteStyles.granite-overlay-pane-fill-width-bottom;
+
+.cdk-overlay-container {
+    @include z-index($z-index-top, $z-index-top);
+}
+
+body {
+    overflow: hidden;
+    @include fnd-theme(background, --granite-color-background-page, true); // !important needed for Edge only
+    background-size: cover !important; // For backdrop pictures.
+}
+
+
+//temporary fix to solve greyed list in ipad/iphone,
+//this should be removed when list is refactored and input component is removed
+table tbody input:disabled {
+    opacity: 1;
+}
+
+/**
+ * Default navigation markup settings
+ */
+nav {
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        a {
+            color: inherit;
+            cursor: inherit;
+            text-decoration: inherit;
+        }
+    }
+}
+
+.no-user-select {
+    @include user-select(none);
+}
+
+.flex-container {
+    @include display-flex;
+    @include flex-direction(row);
+    @include flex-wrap(wrap);
+
+    padding-inline-start: 0.5rem;
+    @media #{$md-up} {
+        padding-inline-start: inherit;
+    }
+}
+
+.flex-chart-container {
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-wrap(nowrap);
+
+    align-items: center;
+
+    padding-inline-start: 0.5rem;
+    @media #{$md-up} {
+        padding-inline-start: inherit;
+    }
+}
+
+.flex-div {
+    font-size: 0.7rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    -webkit-column-break-before: auto;
+    position: relative;
+    @include display-flex;
+    @include flex-direction(column);
+    @include flex-wrap(wrap);
+}
+
+.container-child {
+    @include display-flex;
+    @include flex-direction(column);
+}
+
+.page-content-container {
+    margin-inline-start: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+    position: static;
+    height: auto;
+    width: 100%;
+
+    &.mobile-bottom-toolbar {
+        @media #{$sm-only} {
+            margin-bottom: $toolbar-height;
+        }
+    }
+
+    @media #{$lg-up} {
+        margin-bottom: 0; // No bottom margin in bigger screens since toolbar is not at the bottom
+        position: relative;
+        width: inherit;
+    }
+
+    .page-content {
+        margin: 0;
+
+        @media #{$sm-only} {
+            margin-top: 1px;
+        }
+        @media #{$md-up} {
+            margin: 0 $base-gutter $base-gutter $base-gutter;
+        }
+    }
+}
+
+.page-content > container > list {
+    padding: 0;
+
+    @media #{$md-up} {
+        padding: inherit;
+    }
+}
+
+.hide {
+    display: none !important;
+}
+
+.dummy {
+    @include appearance(none);
+    height:0;
+    width: 0;
+    border-width: 0;
+    position: fixed;
+    top: -1000;
+    @include inset-inline-start(-1000);
+}
+
+.icon {
+    width: 2em;
+    height: 1.4em;
+    background-size: 1.2em 1.5em;
+    background-repeat: no-repeat;
+    background-position: center center;
+    min-width: 1.5em;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.draggable {
+    cursor: grab;
+}
+
+.draggable:active {
+    cursor: grabbing;
+}
+
+
+.toast-bottom-right-ios {
+    @include inset-inline-end(12px);
+    bottom: 44px;
+  }
+
+.toast-container {
+    .ngx-toastr {
+        @include fnd-theme(background-color, --granite-theme-common-background-color, true);
+        @include fnd-theme(color, --granite-theme-common-color, true);
+
+        border: 1px solid rgba(0, 0, 0, 0.4);
+        padding-inline-start: 5rem !important;
+        width: 400px !important;
+        @media #{$sm-only} {
+            width: 300px !important;
+        }
+
+        .toast-close-button {
+            color: inherit;
+            text-shadow: inherit;
+        }
+        &:before {
+            position: absolute;
+            top: calc(50% - 1rem);
+            @include inset-inline-start(1rem);
+            font-size: 2rem;
+            @include z-index($z-index-top);
+            color: $color-ifs-white;
+        }
+        &:after {
+            content: "";
+            position: absolute;
+            top: 0px;
+            @include inset-inline-start(0px);
+            width: 4rem;
+            height: 100%;
+        }
+        &.toast-info {
+            &:after {
+                background: var(--granite-color-signal-info);
+            }
+        }
+        &.toast-success {
+            &:after {
+                background: var(--granite-color-signal-ok);
+            }
+        }
+        &.toast-error {
+            &:after {
+                background: var(--granite-color-signal-failure);
+            }
+        }
+        &.toast-warning {
+            &:before {
+                color: $color-ifs-black;
+            }
+            &:after {
+                background: var(--granite-color-signal-warning);
+            }
+        }
+    }
+}
+
+.is-favorite {
+    animation:animation-favicon .6s cubic-bezier(.19,1,.22,1);
+    transform-origin:center
+}
+
+@keyframes animation-favicon {
+    0.00% {
+      opacity:.5;
+      transform:scale3d(.25,.25,1)
+    }
+    100% {
+      opacity:1;
+      transform:scale3d(1,1,1)
+    }
+}
+
+.button-group {
+    @include display-flex;
+    align-items: flex-start;
+    .button-container {
+        white-space: nowrap;
+        overflow: hidden;
+        outline: none;
+        @include display-flex;
+        align-items: center;
+
+        @media #{$sm-only} {
+            @include flex(1 1 auto); // TODO: This is temporary til we handle overflow of commands in a good way (popup menu etc)
+        }
+
+        &:last-child {
+            margin-inline-end: 0.5rem;
+            @media #{$sm-only} {
+                margin-inline-end: 0.25rem;
+            }
+        }
+
+        .button {
+            border-radius: ($base-gutter * 0.5);
+            border-inline-start-width: 0;
+            @include border-start-end-radius(0);
+            @include border-end-end-radius(0);
+            @include border-start-start-radius(0);
+            @include border-end-start-radius(0);
+            &:focus {
+                border: 1px solid $color-ifs-gray;
+                border-inline-start-width: 1px;
+                padding-inline-start: calc(1rem - 1px);
+            }
+        }
+        &:last-child .button {
+            @include border-start-end-radius($base-gutter * 0.5);
+            @include border-end-end-radius($base-gutter * 0.5);
+        }
+        &:first-child .button {
+            @include border-start-start-radius($base-gutter * 0.5);
+            @include border-end-start-radius($base-gutter * 0.5);
+            border-inline-start-width: 1px;
+        }
+
+        .granite-button {
+            @include border-start-end-radius(0);
+            @include border-end-end-radius(0);
+            @include border-start-start-radius(0);
+            @include border-end-start-radius(0);
+        }
+
+
+        &:last-child {
+            .button, .granite-button {
+                @include border-start-end-radius($base-gutter * 0.5);
+                @include border-end-end-radius($base-gutter * 0.5);
+            }
+        }
+        &:first-child {
+            .button {
+                @include border-start-start-radius($base-gutter * 0.5);
+                @include border-end-start-radius($base-gutter * 0.5);
+                border-inline-start-width: 1px;
+            }
+            .granite-button {
+                @include border-start-start-radius($base-gutter * 0.5);
+                @include border-end-start-radius($base-gutter * 0.5);
+            }
+        }
+    }
+
+    .sub-button-group {
+        @include display-flex;
+    }
+}
+
+// Used by the toolbar when the last button in a group is a dropdown button,
+// which may or may not be present. Workaround until the Selectors Level 4
+// clause "of S" for nth-last-child is supported by browsers (currently in
+// Safari only).
+.button-group-hide-last-item > .button-container:nth-last-child(2) {
+    margin-inline-end: $base-gutter;
+    @media #{$sm-only} {
+        margin-inline-end: $base-gutter * 0.5;
+    }
+
+    .button {
+        @include border-end-end-radius(0.25rem);
+        @include border-start-end-radius(0.25rem);
+
+        &:focus {
+            border: 1px solid $color-ifs-gray;
+        }
+    }
+    .granite-button {
+        @include border-end-end-radius(0.25rem);
+        @include border-start-end-radius(0.25rem);
+    }
+}
+
+button.button {
+    display: inline-block;
+    padding: 0 (2 * $base-gutter);
+    min-width: 2.5rem;
+    min-height: 1.85rem;
+    border-radius: ($base-gutter * 0.5);
+    box-sizing: border-box;
+    margin: 0;
+    text-decoration: none;
+    @include fnd-theme(background, --granite-theme-button-background);
+    @include fnd-theme(color, --granite-theme-button-color);
+    @include fnd-theme(border, --granite-theme-button-border);
+
+    font-size: 0.8rem;
+    line-height: 1em;
+    outline: none;
+    cursor: pointer;
+    @include text-overflow;
+    @include user-select(none);
+    @include appearance(none);
+
+    &.is-primary {
+        @include fnd-theme(color, --granite-theme-button-primary-color);
+        @include fnd-theme(background, --granite-theme-button-primary-background);
+    }
+
+    &:hover {
+        &:not(.disabled){
+            -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,.05);
+            box-shadow: 0 2px 2px 0 rgba(0,0,0,.05);
+            @include fnd-theme(color, --granite-color-text-on-active);
+            @include fnd-theme(background, --granite-color-background-active-hover);
+        }
+    }
+
+    &:active {
+        background: darken($button-background-flat, 15%);
+        -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,.05);
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.05);
+    }
+
+    &:active:hover {
+        background: darken($color-ifs-blue, 5%); // TODO: Theme
+    }
+
+    &:focus {
+        border: 1px solid $color-ifs-gray;
+        -webkit-box-shadow: 0 2px 2px 0 rgba(0,0,0,.05);
+        box-shadow: 0 2px 2px 0 rgba(0,0,0,.05);
+    }
+
+    &.menu-style {
+        border-radius: 0;
+    }
+
+    &.flat-style {
+        padding: 0;
+        background: transparent;
+        border: none;
+        outline: none;
+        width: 2rem;
+        height: 100%;
+        cursor: pointer;
+        font-size: 1.1rem;
+        color: $button-flat-style-color;
+
+        &:hover {
+            color: darken($button-flat-style-color, 15%);
+            box-shadow: none;
+        }
+
+        &:active {
+            color: darken($button-flat-style-color, 15%);
+            box-shadow: none;
+        }
+
+        &:focus {
+            color: darken($button-flat-style-color, 25%);
+            box-shadow: none;
+        }
+    }
+
+    &.field-button-style {
+        position: absolute;
+        top: 0;
+        @include inset-inline-end(0.5rem);
+        padding: 0;
+        min-width: 1.5rem;
+        background-color: $field-button-background;
+        background-size: 1.2rem 1.2rem;
+        background-repeat: no-repeat;
+        background-position: center center;
+        border: 1px transparent solid;
+        border-radius: 0;
+        outline: none;
+        width: 2rem;
+        height: 100%;
+        cursor: pointer;
+        @include text-overflow;
+        @include transition(none);
+        @include appearance(none);
+
+        &:hover {
+            background-color: darken($field-button-background, 5%);
+        }
+
+        &:active {
+            background-color: darken($field-button-background, 15%);
+        }
+
+        &:focus {
+            outline: none;
+            border: 1px solid darken($field-button-background, 25%);
+        }
+    }
+
+    &.disabled {
+        &,
+        &:hover,
+        &:active,
+        &:focus {
+            text-decoration: none;
+            cursor: not-allowed;
+            opacity: 0.5;
+        }
+    }
+}
+
+::selection {
+    background: $color-ifs-green;
+    // Attention: Do not theme this in Edge Browser EdgeHTML15 - it will screw up all colors in the page
+    // TODO: How do we theme this in Chrome/Safari only?
+    // @include fnd-theme(background, --granite-theme-primary-light-color); // TODO: Add specific --granite-theme-selection-color
+}
+
+::-webkit-input-placeholder {
+    @include fnd-theme(color, --granite-theme-common-placeholder-color);
+}
+
+:-moz-placeholder {
+    @include fnd-theme(color, --granite-theme-common-placeholder-color);
+}
+
+::-moz-placeholder {
+    @include fnd-theme(color, --granite-theme-common-placeholder-color);
+}
+
+:-ms-input-placeholder {
+    @include fnd-theme(color, --granite-theme-common-placeholder-color);
+}
+
+// Style the search clear button for webkit browsers
+::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    position:relative;
+    height: 1.5rem;
+    width: 1.5rem;
+    background-size: 1rem 1rem;
+    background-position: center;
+    background-image: url('~images/shell/clear-filter.svg');
+    background-repeat: no-repeat;
+    cursor: pointer;
+}
+
+// Style the search clear button for IE10+
+::-ms-clear {
+    display: none;
+}
+
+/**
+ * `hide-gt-sm show-gt-lg` should hide from 600px to 1200px
+ * `show-md hide-gt-sm` should show from 0px to 960px and hide at >960px
+ * `hide-gt-md show-gt-sm` should show everywhere (show overrides hide)`
+ *
+ *  hide means hide everywhere
+ *  Sizes:
+ *         0    <= size < 600  Phone
+ *         600  <= size < 960  Tablet
+ *         960  <= size < 1200 Tablet-Landscape
+ */
+
+@media #{$sm-only} {
+    // SMALL SCREEN
+    .hide, .hide-sm {
+        &:not(.show-sm):not(.show) {
+            display: none !important;
+        }
+    }
+    [hide], [hide-sm] {
+        &:not([show-sm]):not([show]) {
+            display: none !important;
+        }
+    }
+}
+
+@media #{$md-only} {
+    // MEDIUM SCREEN
+    .hide, .hide-gt-sm {
+        &:not(.show-gt-sm):not(.show-md):not(.show) {
+            display: none !important;
+        }
+    }
+    [hide], [hide-gt-sm] {
+        &:not([show-gt-sm]):not([show-md]):not([show]) {
+            display: none !important;
+        }
+    }
+    .hide-md:not(.show-sm):not(.show-md):not(.show) {
+        display: none !important;
+    }
+    [hide-md]:not([show-sm]):not([show-md]):not([show]) {
+        display: none !important;
+    }
+}
+
+@media #{$lg-only} {
+    // LARGE SCREEN
+    .hide, .hide-gt-md {
+        &:not(.show-gt-md):not(.show-lg):not(.show) {
+            display: none !important;
+        }
+    }
+    [hide], [hide-gt-sm], [hide-gt-md] {
+        &:not([show-gt-sm]):not([show-gt-md]):not([show-lg]):not([show]) {
+            display: none !important;
+        }
+    }
+    .hide-lg:not(.show-sm):not(.show-md):not(.show-lg):not(.show) {
+        display: none !important;
+    }
+    [hide-lg]:not([show-sm]):not([show-md]):not([show-lg]):not([show]) {
+        display: none !important;
+    }
+}
+
+@media #{$lg-up} {
+    // BIGGER THAN LARGE SCREEN
+    .hide, .hide-gt-sm, .hide-gt-md, .hide-gt-lg {
+        &:not(.show-gt-sm):not(.show-gt-md):not(.show-gt-lg):not(.show) {
+            display: none !important;
+        }
+    }
+    [hide], [hide-gt-sm], [hide-gt-md], [hide-gt-lg] {
+        &:not([show-gt-sm]):not([show-gt-md]):not([show-gt-lg]):not([show]) {
+            display: none !important;
+        }
+    }
+    .hide-gt-lg:not(.show-gt-lg):not(.show) {
+        display: none !important;
+    }
+    [hide-gt-lg]:not([show-gt-lg]):not([show]) {
+        display: none !important;
+    }
+}
+
+/**
+ * The Evil anti-print
+ */
+
+@media only print {
+    *:not(body):not(html) {
+        display: none !important;
+    }
+
+    body:before {
+        display: block;
+        content: "DO NOT PRINT THIS! Use reporting instead.";
+        position: fixed;
+        top: 0;
+        @include inset-inline-start(0);
+        text-align: center;
+        padding: 30vh 20vw 0;
+        font-size: 6vw;
+        width: 100vw;
+        height: 100vh;
+    }
+}
+
+/**
+ * In DevExpress charts, don't let the SVG image take up more than the
+ * container space, or we'll get resize problems when the chart is placed
+ * in an arrange block.
+ */
+fnd-radar-chart-container {
+  svg {
+      max-width: 100%;
+  }
+}
+
+.granite-menu-cdk-overlay-container-touch-device {
+    @include z-index($z-index-top, $z-index-dropdown);
+    position: fixed;
+}
+
+.search-settings-panel-cdk-overlay-container-desktop-page {
+    @include z-index($z-index-toolbar);
+    position: fixed;
+}
+
+.search-settings-panel-cdk-overlay-container-desktop-search-panel {
+    @include z-index-above($z-index-navigator);
+    position: fixed;
+}
+
+.search-settings-panel-cdk-overlay-container-desktop-dialog {
+    @include z-index($z-index-dialog);
+    position: fixed;
+}
+
+.shell-profile-dropdown-touch-device-branding {
+    button[granitemenutouchcloseitem] {
+        @include fnd-branding-common(color, --fnd-branding-w-510-color, --granite-color-text);
+        @include fnd-branding-common(background-color, --fnd-branding-w-501-color, --granite-color-background-variant);
+    }
+
+    button[granitemenutouchtitleitem] {
+        &.granite-menu-item-title{
+            @include fnd-branding-common(color, --fnd-branding-w-510-color, --granite-color-text-weak);
+            @include fnd-branding-common(background-color, --fnd-branding-w-501-color, --granite-color-background-variant);
+        }
+    }
+}
+
+.granite-menu-item {
+    fnd-badge {
+        margin-inline-start: var(--granite-spacing-xs);
+    }
+
+    &:empty {
+        display: none;
+    }
+}

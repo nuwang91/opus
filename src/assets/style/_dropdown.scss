@@ -1,0 +1,40 @@
+@import 'include';
+
+.sub-menu-dropdown-arrow {
+    padding: 0 $base-gutter;
+    flex: 0;
+    @include display-flex;
+    align-items: center
+}
+
+.command-toolbar-overflow-trigger-submenu {
+    i[class^="icon-"],
+    i[class*=" icon-"] {
+        $icon-edge-margin: $base-gutter * 0.5;
+        margin-inline-start: $icon-edge-margin;
+
+        &.pre-label {
+            margin-inline-start: -$icon-edge-margin;
+            margin-inline-end: $icon-edge-margin;
+        }
+    }
+    flex: 1;
+}
+
+span.triggerWrapper {
+    @include display-flex;
+    justify-content: center;
+}
+
+h4.group-header {
+    text-align: end;
+    font-size: $fnd-font-size-label-text;
+    font-weight: normal;
+    @include fnd-theme(color, --granite-theme-command-group-label-color);
+    @include fnd-theme(background-color, --granite-theme-command-group-label-background-color);
+
+    padding: $base-gutter * 0.5 $base-gutter 0;
+    margin: 0;
+    cursor: default;
+    white-space: nowrap;
+}

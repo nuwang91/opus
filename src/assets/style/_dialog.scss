@@ -1,0 +1,252 @@
+@import "include";
+
+.dialog {
+    position: fixed;
+    top: 0;
+    @include inset-inline-start(0);
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    @include z-index($z-index-dialog);
+    //-webkit-overflow-scrolling: touch; // Adding this aiming for smooth scrolling on iOS you'll break z-index completely and this like lov will get behind dialogs no matter what you do.
+    background-color:rgba(0, 0, 0, 0.6);
+
+    .modal-background {
+        position: fixed;
+        @include inset-inline-start(0);
+        top: 0;
+        @include inset-inline-end(0);
+        bottom: 0;
+        @include z-index($z-index-dialog, $z-index-level-1);
+
+        @media #{$sm-only} {
+             display: none;
+        }
+    }
+
+    .dialog-container:not(.recent-screens-container) {
+
+        @media #{$md-up} {
+            top: 10vh;
+            margin-bottom: 10vh;
+            @include inset-inline-start(50%);
+            margin-inline-start: -45vw; // 90% of 50%
+            max-width: 90vw;
+            width: 700px; // Set a default
+        }
+
+        @media (min-width: 700px) {
+            margin-inline-start: -350px;
+        }
+
+        @media #{$lg-up} {
+            display: block;
+            max-width: 80vw;
+        }
+
+        @media #{$sm-only} {
+            display: block;
+            position: relative;
+            min-height: 100vh;
+            width: 100vw;
+        }
+
+        &.small {
+            width: 400px;
+            @media (min-width: 400px) {
+                margin-inline-start: -200px;
+            }
+        }
+
+        &.large {
+            width: 1200px;
+            @media #{$md-up} {
+                margin-inline-start: -45vw; // 90% of 50%
+            }
+            @media #{$lg-up} {
+                margin-inline-start: -40vw; // 80% of 50%
+            }
+            @media (min-width: 1500px) {
+                margin-inline-start: -600px;
+            }
+        }
+
+    }
+
+    &.message-box {
+        .dialog-container {
+            @media #{$md-up} {
+                width: 400px;
+                @include inset-inline-start(50%);
+                @media (min-width: 400px) {
+                    margin-inline-start: -200px;
+                }
+            }
+
+            @media #{$sm-only} {
+                width: 100vw;
+                height: 100vh;
+            }
+        }
+    }
+
+    .dialog-container {
+        @include z-index($z-index-dialog, $z-index-level-2);
+        @include display-flex;
+        @include flex-direction(column);
+        position: relative;
+        justify-content: space-between;
+        @include fnd-theme(background-color, --granite-theme-common-background-color);
+        @include fnd-theme(color, --granite-theme-common-color);
+        border: 1px solid $color-ifs-gray;
+        padding: 0 2 * $base-gutter 2 * $base-gutter;
+        @include box-shadow(0, 0.5rem, 0.5rem, -0.25rem);
+
+        .dialog-close-button {
+            position: absolute;
+            @include inset-inline-end(0.1rem);
+            height: 2 * $base-gutter;
+            width: 2 * $base-gutter;
+            cursor: pointer;
+        }
+
+        .dialog-header {
+            width: 100%;
+            padding-top: 2 * $base-gutter;
+
+            @media #{$sm-only} {
+                width: 80vw;
+            }
+
+            .dialog-title {
+                @include text-overflow;
+                margin: 0;
+
+                @media #{$sm-only} {
+                    width: 80vw; // for ellipsis to work there should be a width defined with a unit not %
+                }
+            }
+        }
+
+        .dialog-content-all {
+            @include display-flex;
+            @include flex-direction(column);
+
+            .dialog-content {
+                margin: $base-gutter 0;
+            }
+
+            @media #{$sm-only} {
+                position: relative;
+                height: 100%;
+            }
+
+        }
+
+        .dialog-actions {
+            @include display-flex;
+            @include flex-direction(row);
+            @include flex(1 1 auto);
+            justify-content: flex-end;
+            @include flex-wrap(wrap);
+            vertical-align: bottom;
+
+            .dialog-button {
+                margin-inline-start: $base-gutter;
+                margin-top: $base-gutter;
+                @include display-flex;
+                align-items: center;
+
+                &:first-child {
+                    margin-inline-start: inherit;
+                }
+
+                @media #{$sm-only} {
+                    margin-top: 2rem;
+                    margin-bottom: 0.1rem;
+                    align-items: flex-end;
+                }
+            }
+        }
+    }
+
+}
+
+fnd-modal-assistant {
+    > * {
+        .granite-modal-actions-container {
+            @media #{$md-up} {
+                padding-inline-end: var(--granite-spacing-s);
+                padding-inline-start: var(--granite-spacing-s);
+            }
+        }
+    }
+}
+
+fnd-dialog-container > * {  // CSS for modal actions - avoid global class scope
+    .modal-actions-container {
+        @include display-flex;
+        @include flex-direction(row);
+        @include flex-wrap(wrap);
+        padding-top: $base-gutter;
+        @media #{$sm-only} {
+            position: fixed;
+            width: 100%;
+            bottom: -1px;
+            @include inset-inline-start(0);
+            padding-inline-start: calc(#{$base-gutter} / 2);
+            padding-inline-end: calc(#{$base-gutter} / 2);
+            margin-bottom: $base-gutter;
+            height: calc(#{$base-gutter} * 6);
+            @include z-index($z-index-toolbar);
+            align-items: center;
+            justify-content: space-between;
+            @include flex-wrap(nowrap);
+        }
+        fnd-button {
+            min-width: calc((#{$base-gutter} * 12));    // Buttons to take up equal space i.e. 'OK' and 'Cancel' buttons equal
+            @media #{$sm-only} {
+                height: 100%;
+                min-width: calc(#{$base-gutter} * 4);    // cancel out fnd-button's <button>'s min-width, to support iphone 5 width
+                flex: 1 1 0;
+            }
+        }
+    }
+
+    .granite-modal-actions-container {
+        @media #{$md-up} {
+            button[graniteprimarybutton],button[granitebutton] {
+                min-width: var(--granite-spacing-4-xl);
+            }
+
+            .global-overflow-trigger, .default-overflow-trigger {
+                .granite-button-wrapper {
+                    min-width: inherit;
+                }
+            }
+        }
+        @media #{$sm-only} {
+            padding-inline-end: var(--granite-spacing-m);
+            padding-inline-start: var(--granite-spacing-m);
+            width: 100%;
+
+            button[graniteprimarybutton],button[granitebutton] {
+                width: inherit;
+            }
+        }
+    }
+
+    .modal-dialog-content-all {
+        @include display-flex;
+        @include flex-direction(column);
+        position: relative;
+
+        .modal-dialog-content {
+            margin: $base-gutter 0;
+        }
+
+        @media #{$sm-only} {    // On mobile, prevent content being behind sticky buttons
+            margin-bottom: $toolbar-height;
+        }
+    }
+}

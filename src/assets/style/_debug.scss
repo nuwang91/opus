@@ -1,0 +1,30 @@
+// Misc debugging mixins
+
+// Enable lovely debug colors for elements affected by local size directive
+$show-local-size-debug-colors: false;
+
+// Set background colors on local size affected elements' background
+@mixin local-size-debug-colors() {
+    @if $show-local-size-debug-colors == true {
+        .fnd-local-size-xs-only {
+            background-color: lightblue;
+        }
+        .fnd-local-size-sm-only {
+            background-color: lightgreen;
+        }
+        .fnd-local-size-md-only {
+            background-color: yellow;
+        }
+        .fnd-local-size-lg-only {
+            background-color: pink;
+        }
+    }
+}
+
+// Set any background color on an element, when debug colors are enabled (above)
+@mixin local-size-debug-color($color) {
+    @if $show-local-size-debug-colors == true {
+        background-color: $color;
+    }
+}
+

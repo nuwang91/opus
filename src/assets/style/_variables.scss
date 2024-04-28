@@ -1,0 +1,55 @@
+$base-rem:                 16px !default;
+$base-gutter:              0.5rem !default;
+
+$layout-breakpoint-sm:     600px !default;
+$layout-breakpoint-md:     960px !default;
+$layout-breakpoint-lg:     1280px !default;
+$layout-breakpoint-xl:     1920px !default;
+
+$layout-gutter-width:      ($base-gutter * 2) !default;
+
+$base-padding:              $base-gutter ($base-gutter * 2) !default;
+$base-line-height:          1.56261; // Golden ratio
+
+$breadcrumb-height:                2rem !default;
+$navigator-search-height:          $breadcrumb-height;
+$shell-header-height:              2.875rem;
+$shell-header-ifs-logo-height:     2.375rem;
+$shell-header-ifs-logo-width:      5.125rem;
+$collapsible-header-height:        2rem;
+$shell-header-icon-width:          2rem;
+$dropdown-max-height:              22rem;
+$splitter-divider-width:           5px;
+$branding-preview-height:          2rem;
+$contact-widget-user-picture:      2.2rem;
+
+$state-indicator-width:            6rem;
+$state-indicator-small-screen-width:   4rem;
+
+// used to make sure that bottom content is viewable by scrolling when overflow (despite fixed buttons), among other things
+$toolbar-height: $shell-header-height;
+
+// Spacing variables
+// These will be moved to the design system in the future
+$spacing-micro: ($base-gutter * 0.5) !default;
+$spacing-tiny: $base-gutter !default;
+$spacing-small: ($base-gutter * 2) !default;
+$spacing-medium: ($base-gutter * 4) !default;
+$spacing-big: ($base-gutter * 6) !default;
+$spacing-large: ($base-gutter * 8) !default;
+$spacing-huge: ($base-gutter * 12) !default;
+
+$shell-menu-item-height: 2.5rem;
+
+// Lobby specific variables - START
+$lobby-element-unit:                                    12.5rem;
+$lobby-element-spacing-unit:                            $base-gutter;
+$lobby-element-radius:                                  $base-gutter * 2;
+$lobby-element-content-line-height:                     150%;
+$lobby-element-size-1:                                  $lobby-element-unit;
+$lobby-element-size-2:                                  ($lobby-element-unit * 2) + ($lobby-element-spacing-unit * 2);
+$lobby-element-size-3:                                  ($lobby-element-unit * 3) + ($lobby-element-spacing-unit * 4);
+$lobby-element-size-4:                                  ($lobby-element-unit * 4) + ($lobby-element-spacing-unit * 6);
+$lobby-element-size-6:                                  ($lobby-element-unit * 6) + ($lobby-element-spacing-unit * 10);
+$lobby-element-size-8:                                  ($lobby-element-unit * 8) + ($lobby-element-spacing-unit * 14);
+// Lobby specific variables - END

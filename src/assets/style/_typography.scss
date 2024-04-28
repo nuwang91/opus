@@ -1,0 +1,42 @@
+@import "variables";
+
+@mixin font-face($family, $src, $altSrc, $style: normal, $weight: normal, $display: auto) {
+    @font-face {
+        font-family: $family;
+        font-display: $display;
+        src: url("#{$src}.woff") format("woff"),
+             url("#{$altSrc}.woff") format("woff");
+        font-style: $style;
+        font-weight: $weight;
+    }
+}
+
+$font-family-sans-serif:    'Open Sans', sans-serif !default;
+
+//--fnd-branding-w-600-font is the application font that can be configured through appearance designer.
+// This will override the default Open Sans throughout the application if a valid font is set in appearance designer
+$font-family-sans-serif-brandable:    --fnd-branding-w-600-font, $font-family-sans-serif;
+
+$font-weight-normal:        400 !default;
+$font-weight-semibold:      600 !default;
+$font-weight-bold:          700 !default;
+
+$fnd-font-size-large-title-text: 36px; // TODO: Use these in all components (instead of font-size: 0.8rem etc)
+$fnd-font-size-title-text: 26px;
+$fnd-font-size-small-title-text: 18px; // TODO: Would be better to define h1, h2, h3 etc and then put ONE media query here, instead on in components
+$fnd-font-size-widget-text: 13px;
+$fnd-font-size-body-text: 14px;
+$fnd-font-size-body-text-small: 14px; // TODO: Set these with REMs instead (This would be 1.4rem if 1rem = 10px, font-size: 62.5%, 0.625*16px=10px)
+$fnd-font-size-label-text-medium: 12px;
+$fnd-font-size-label-text: 11px;
+$fnd-font-size-small-label-text: 10px;
+
+$fnd-font-size-lobby-element-header-text: 1rem;
+$fnd-font-size-lobby-element-footer-text: 0.875rem; // 14px = 0.875rem
+$fnd-font-size-lobby-separator-text: 1rem;
+$fnd-font-size-lobby-element-content: 0.75rem; // 12px = 0.75rem
+
+$fnd-font-size-lobby-element-text-micro: 0.625rem;
+$fnd-font-size-lobby-element-text-small: 0.75rem;
+$fnd-font-size-lobby-element-text-medium: 0.875rem;
+$fnd-font-size-lobby-element-text-large: 1rem;

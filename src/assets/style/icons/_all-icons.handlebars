@@ -1,0 +1,60 @@
+<html>
+<head>
+    <style>
+        @import '../variables';
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            margin: 1em;
+            display: inline-block;
+        }
+
+        @font-face {
+            font-family: '{{ fontName }}';
+            src: url('~{{{ fontPath }}}{{{ fontName }}}.woff2?{{ timestamp }}') format('woff2'),
+            url('~{{{ fontPath }}}{{{ fontName }}}.woff?{{ timestamp }}') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        [class^="icon-"]:before,
+        [class*=" icon-"]:before {
+             font-family: '{{ fontName }}' !important;
+             font-style: normal !important;
+             font-weight: normal !important;
+             font-variant: normal !important;
+             text-transform: none !important;
+             speak: none;
+             line-height: 1;
+             -webkit-font-smoothing: antialiased;
+             -moz-osx-font-smoothing: grayscale;
+             position: relative;
+             top: 0.1em;
+        }
+
+        i[class^="icon-"],
+        i[class*=" icon-"] {
+             display: inline-block;
+             width: 1em;
+             height: 1em;
+        }
+
+        {{#glyphs}}
+        .icon-{{name}}:before { content: "{{#each unicode}}{{#unless @index}}\\{{charcode this}}{{/unless}}{{/each}}"; }
+        {{/glyphs}}
+
+    </style>
+</head>
+<body>
+<ul>
+{{#glyphs}}
+    <li>
+        <i title="{{name}}" class="icon-{{name}}"></i>
+        {{name}}
+    </li>
+{{/glyphs}}
+</ul>
+</body>
+</html>

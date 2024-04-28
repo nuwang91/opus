@@ -1,0 +1,148 @@
+$global: false !default;
+
+/**
+ * As of 2019-12-10, W3C has put forward a standard for the css rule inset-inline-start
+ * (which should be used instead of right/left to support right-to-left languages).
+ * However, as it's not supported yet in Safari, and is still in experimental mode for Chrome,
+ * we're stuck with this mixin for now. See also mixin, inset-inline-end.
+ */
+ @mixin inset-inline-start($value) {
+    @include _bidirectional-property(left, right, $value, $value);
+}
+
+/**
+ * As of 2019-12-10, W3C has put forward a standard for the css rule inset-inline-start
+ * (which should be used instead of right/left to support right-to-left languages).
+ * However, as it's not supported yet in Safari, and is still in experimental mode for Chrome,
+ * we're stuck with this mixin for now. See also mixin, inset-inline-start.
+ */
+@mixin inset-inline-end($value) {
+    @include _bidirectional-property(right, left, $value, $value);
+}
+
+/**
+ * Most browsers do not yet support float with relative values (inline-start).
+ * Therefore, we are forced to rely upon our own mixin, if we are to support right-to-left languages.
+ */
+@mixin float-inline-start() {
+    @include _bidirectional-property(float, float, left, right);
+}
+
+/**
+ * Most browsers do not yet support float with relative values (inline-end).
+ * Therefore, we are forced to rely upon our own mixin, if we are to support right-to-left languages.
+ */
+@mixin float-inline-end() {
+    @include _bidirectional-property(float, float, right, left);
+}
+
+/**
+ * Most browsers do not yet support clear with relative values (inline-start).
+ * Therefore, we are forced to rely upon our own mixin, if we are to support right-to-left languages.
+ */
+ @mixin clear-inline-start() {
+    @include _bidirectional-property(clear, clear, left, right);
+}
+
+/**
+ * Most browsers do not yet support clear with relative values (inline-end).
+ * Therefore, we are forced to rely upon our own mixin, if we are to support right-to-left languages.
+ */
+@mixin clear-inline-end() {
+    @include _bidirectional-property(clear, clear, right, left);
+}
+
+/**
+ * Most browsers do not yet support border with relative values.
+ * Therefore, we are forced to rely upon our own mixin, if we are to support right-to-left languages.
+ * This one replaces border-top-right-radius (in LTR).
+ */
+ @mixin border-start-end-radius($value) {
+    @include _bidirectional-property(border-top-right-radius, border-top-left-radius, $value, $value);
+}
+
+/**
+ * Most browsers do not yet support border with relative values.
+ * Therefore, we are forced to rely upon our own mixin, if we are to support right-to-left languages.
+ * This one replaces border-bottom-right-radius (in LTR).
+ */
+ @mixin border-end-end-radius($value) {
+    @include _bidirectional-property(border-bottom-right-radius, border-bottom-left-radius, $value, $value);
+}
+
+/**
+ * Most browsers do not yet support border with relative values.
+ * Therefore, we are forced to rely upon our own mixin, if we are to support right-to-left languages.
+ * This one replaces border-bottom-left-radius (in LTR).
+ */
+ @mixin border-end-start-radius($value) {
+    @include _bidirectional-property(border-bottom-left-radius, border-bottom-right-radius, $value, $value);
+}
+
+/**
+ * Most browsers do not yet support border with relative values.
+ * Therefore, we are forced to rely upon our own mixin, if we are to support right-to-left languages.
+ * This one replaces border-top-left-radius (in LTR).
+ */
+ @mixin border-start-start-radius($value) {
+    @include _bidirectional-property(border-top-left-radius, border-top-right-radius, $value, $value);
+}
+
+/**
+ * Bidirectional background position isn't yet supported. Provide our own start alternative.
+ */
+@mixin background-position-start() {
+    @include bidirectional-property(background-position, left, right);
+}
+
+/**
+ * Bidirectional background position isn't yet supported. Provide our own start / end alternative.
+ */
+@mixin background-position-end() {
+    @include bidirectional-property(background-position, right, left);
+}
+
+/**
+ *
+ */
+@mixin bidirectional-property($prop, $ltr-value, $rtl-value) {
+    @include _bidirectional-property($prop, $prop, $ltr-value, $rtl-value);
+}
+
+/**
+ * Wrap _reflexive-property with support for both ltr and rtl cases.
+ * @param $ltr-property the property you'd expect in ltr
+ * @param $rtl-property the property you'd expect in rtl
+ * @param $left-value the value that the property should have when ltr
+ * @param $right-value the value that the property should have when rtl
+ */
+ @mixin _bidirectional-property($ltr-property, $rtl-property, $left-value, $right-value) {
+    @include _reflexive-property(ltr, $ltr-property, $left-value);
+    @include _reflexive-property(rtl, $rtl-property, $right-value);
+}
+
+/**
+ * Despite Angular scoping, and bug causing nested host-context declarations to fail,
+ * select elements that are preceeded by an ancestor which sets dir
+ * @param $dir the direction to look for
+ * @param $property the property to set the value for
+ * @param $value the value that the property should have
+ * Due to a bug in Angular related to the usage of host-context with or (,)
+ * we use two cases of @at-root instead.
+ */
+@mixin _reflexive-property($dir, $property, $value) {
+    @at-root {
+        html[dir="#{$dir}"] & { // cover cases with previous host-context statement (html ancestor has dir)
+            #{$property}: #{$value};
+        }
+    }
+
+    @at-root {
+        @if not $global {
+            :host-context([dir="#{$dir}"]) & {  // cover cases without host-context statement (any ancestor has dir)
+                #{$property}: #{$value};
+            }
+        }
+    }
+
+}

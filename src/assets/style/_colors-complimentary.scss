@@ -1,0 +1,92 @@
+@import '@ifsworld/granite-tokens/design-tokens/light/variables';
+@import './legacy-tokens-variables';
+
+// TODO: With the introduction of Granite-Tokens...
+// we introduce cross-ref of this project's dependencies to values provided as
+// external Design Tokens
+// (until we can take care of updating all references in this project)
+
+// Standard IFS palette, purple and grayscale + black/white
+$color-ifs-purple: $granite-color-ifs-purple-old;
+$color-ifs-purple-light: $granite-color-ifs-purple-light;
+$color-ifs-black: $granite-color-ifs-black;
+$color-ifs-black-dark: $granite-color-ifs-black-dark;
+$color-ifs-black-light: $granite-color-ifs-black-light;
+$color-ifs-black-light-light: $granite-color-ifs-black-light-light;
+$color-ifs-black-light-shadow: $granite-color-ifs-black-light-shadow;
+$color-ifs-white: $granite-color-ifs-white;
+$color-ifs-white-light: $granite-color-ifs-white-light;
+$color-ifs-white-light-light: $granite-color-ifs-white-light-light;
+$color-ifs-white-dark: $granite-color-ifs-white-dark;
+$color-ifs-gray: $granite-color-ifs-gray;
+$color-ifs-gray-lighter: $granite-color-ifs-gray-lighter;
+$color-ifs-gray-light: $granite-color-ifs-gray-light;
+$color-ifs-gray-dark: $granite-color-ifs-gray-dark;
+
+// IFS palette
+// See https://open.ifsworld.com/media.ifsx?EntityId=6726&FileId=1&Version=1
+$color-ifs-pink: $granite-color-ifs-pink;
+$color-ifs-pink-light: $granite-color-ifs-pink-light;
+$color-ifs-blue: $granite-color-ifs-blue-old;
+$color-ifs-blue-light: $granite-color-ifs-blue-light;
+$color-ifs-dark-blue: $granite-color-ifs-dark-blue;
+$color-ifs-green: $granite-color-ifs-green-old; // todo: original IFS is #96c03a, trying something that works better with purple
+$color-ifs-green-light: $granite-color-ifs-green-light; // original #bad27a
+$color-ifs-dark-green: $granite-color-ifs-dark-green;
+$color-ifs-red: $granite-color-ifs-red-old;
+$color-ifs-red-light: $granite-color-ifs-red-light;
+$color-ifs-orange: $granite-color-ifs-orange;
+$color-ifs-yellow: $granite-color-ifs-yellow;
+$color-ifs-dark-orange: $granite-color-ifs-dark-orange;
+
+// Set of State progress color
+$color-ifs-progress1: $granite-color-ifs-progress-1;
+$color-ifs-progress2: $granite-color-ifs-progress-2;
+$color-ifs-progress3: $granite-color-ifs-progress-3;
+$color-ifs-progress4: $granite-color-ifs-progress-4;
+$color-ifs-progress5: $granite-color-ifs-progress-5;
+$color-ifs-progress6: $granite-color-ifs-progress-6;
+$color-ifs-progress7: $granite-color-ifs-progress-7;
+$color-ifs-progress8: $granite-color-ifs-progress-8;
+$color-ifs-progress9: $granite-color-ifs-progress-9;
+$color-ifs-progress10: $granite-color-ifs-progress-10;
+$color-ifs-progress11: $granite-color-ifs-progress-11;
+$color-ifs-progress12: $granite-color-ifs-progress-12;
+
+// See https://open.ifsworld.com/wiki/Wiki%20Pages/IFS%20Colors.aspx
+$ifs-color-primary: $granite-ifs-color-primary;
+$ifs-color-primary-dark: $granite-ifs-color-primary-dark;
+$ifs-color-primary-light: $granite-ifs-color-primary-light;
+// $ifs-color-secondary
+// $ifs-color-secondary-dark
+// $ifs-color-secondary-light
+// $ifs-color-tertiary
+// $ifs-color-tertiary-dark
+// $ifs-color-tertiary-light
+
+$ifs-color-brand-complementary1: $granite-ifs-color-brand-complementary-1;
+$ifs-color-brand-complementary2: $granite-ifs-color-brand-complementary-2;
+$ifs-color-brand-complementary3: $granite-ifs-color-brand-complementary-3;
+$ifs-color-brand-complementary4: $granite-ifs-color-brand-complementary-4;
+$ifs-color-brand-complementary5: $granite-ifs-color-brand-complementary-5;
+$ifs-color-brand-complementary6: $granite-ifs-color-brand-complementary-6;
+$ifs-color-brand-complementary7: $granite-ifs-color-brand-complementary-7;
+$ifs-color-brand-complementary8: $granite-ifs-color-brand-complementary-8;
+$ifs-color-brand-complementary9: $granite-ifs-color-brand-complementary-9;
+$ifs-color-brand-complementary10: $granite-ifs-color-brand-complementary-10;
+$ifs-color-brand-complementary11: $granite-ifs-color-brand-complementary-11;
+
+$ifs-color-contextual-success: $granite-ifs-color-contextual-success;
+$ifs-color-contextual-warning: $granite-ifs-color-contextual-warning;
+$ifs-color-contextual-failure: $granite-ifs-color-contextual-failure;
+$ifs-color-contextual-info: $granite-ifs-color-contextual-info;
+$ifs-color-contextual-default: $granite-ifs-color-contextual-default; // TODO: Maybe change into transparent. But the foreColor needs to be adjusted from background
+
+//$button-background: $fnd-button-background;
+$button-background: $granite-button-background;
+$button-background-flat: $granite-button-background-flat;
+$field-button-background: $granite-field-button-background;
+$button-flat-style-color: $granite-button-flat-style-color;
+$rating-star-color: $granite-rating-star-color;
+
+$body-background: $granite-body-background;

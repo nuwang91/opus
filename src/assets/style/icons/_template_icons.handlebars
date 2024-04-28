@@ -1,0 +1,83 @@
+{{! SCSS template for icons. Uses Handlebars as template language}}
+@import '../variables';
+
+{{! Bi-directional mixins}}
+@import '../direction';
+
+{{!
+    // Supply two alternative font URLs. For Storybook static build, the slash
+    // following the tilde would result in a path like C:/style/fonts)
+}}
+@font-face {
+    font-family: '{{ fontName }}';
+    src: url('~{{{ fontPath }}}{{{ fontName }}}.woff2?{{ timestamp }}') format('woff2'),
+         url('~{{{ fontPath }}}{{{ fontName }}}.woff?{{ timestamp }}') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+    &:before {
+        font-family: '{{ fontName }}' !important;
+        font-style: normal !important;
+        font-weight: normal !important;
+        font-variant: normal !important;
+        text-transform: none !important;
+        speak: none;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        position: relative;
+        top: 0.1em;
+    }
+}
+
+[class^="diagram-override-icon-ios"] {
+    &:before {
+        position: inherit;
+    }
+}
+
+// Icons when used on their own
+i {
+    &[class^="icon-"],
+    &[class*=" icon-"] {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+    }
+}
+
+button.button {
+    &[class^="icon-"],
+    &[class*=" icon-"] {
+        position: relative;
+        text-indent: 1em;
+
+        &:before {
+            position: absolute;
+            @include inset-inline-start(0);
+            top: calc(50% - 0.5em);
+        }
+    }
+}
+
+button.badge {
+    &[class^="icon-"],
+    &[class*=" icon-"] {
+
+        &:before {
+            @include inset-inline-start(0);
+            text-indent: 0.1em;
+        }
+    }
+}
+
+{{#glyphs}}
+{{#with attr}}
+.icon-{{glyph-name}} {
+    &:before { content: "\\{{charcode unicode}}"; }
+}
+{{/with}}
+{{/glyphs}}

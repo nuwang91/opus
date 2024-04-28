@@ -1,0 +1,441 @@
+/*******************************************************************************************************************************************
+* README:
+*   Welcome to the place to manage z-index in a more organized way. Please avoid using constants directly in your
+*   SCSS files and make use of the following mixins instead:
+*
+*   - @include z-index()
+*       Returns a z-index for the category provided as argument(s) based on its/their position in the array $z-index-hierarchy
+*       Example A-1:
+*           .myClass {
+*               @include z-index($z-index-header);
+*               background-color: #ffffff;
+*           }
+*
+*       Example A-2:
+*       In case you want to manage different z-indices within the same component and you need fine grained control:
+*           .myClass {
+*               @include z-index( $z-index-navigator, $z-index-level-1 );
+*               background-color: #ffffff;
+*           }
+*
+*   - @include z-index-above()
+*        Takes a list of categories defined in $z-index-hierarchy array as input, returning the highest value + 1
+*
+*        Example B-1.1:
+*        Without fine grained control, get something slightly higher than "breadcrumb"
+*           .myClass {
+*               @include z-index-above( $z-index-breadcrumb );
+*               background-color: #ffffff;
+*           }
+*
+*        Example B-1.2:
+*        Without fine grained control, compares "breadcrumb" VS "toolbar" VS as many as you want
+*           .myClass {
+*               @include z-index-above( $z-index-breadcrumb, $z-index-toolbar );
+*               background-color: #ffffff;
+*           }
+*
+*        Example B-2.1
+*        With fine grained control
+*        Notice: It returns a different value than B-1.2,
+*        Uses breadcrumb as a base and fine grains it with toolbar, then it returns a sliglty higher value than that result
+*        the use of the parenthesis has a similar meaning as in example A-2.
+*        Please refer to z-index-above documentation for more information.
+*           .myClass {
+*               @include z-index-above( ($z-index-breadcrumb, $z-index-toolbar) );
+*               background-color: #ffffff;
+*           }
+
+*        Example B-2.2
+*        With and without fine grained control
+*        Notice: It returns a different value than B-1.2,
+*        This dummy example uses breadcrumb as a base and fine grains it with toolbar,
+*        then it compares that z-index with the one directly obtained from toolbar,
+*        and returns the highest value + 1.
+*        The use of the parenthesis has a similar meaning as in example A-2.
+*        Please refer to z-index-above documentation for more information.
+*           .myClass {
+*               @include z-index-above( ($z-index-breadcrumb, $z-index-toolbar), $z-index-breadcrumb);
+*               background-color: #ffffff;
+*           }
+*
+*   - @include z-index-below()
+*        Takes a list of categories defined in $z-index-hierarchy array as input, returning the lowest value - 1
+*
+*        Example C-1.1:
+*        Without fine grained control, get something slightly lower than "breadcrumb"
+*           .myClass {
+*               @include z-index-below( $z-index-breadcrumb );
+*               background-color: #ffffff;
+*           }
+*
+*        Example C-1.2:
+*        Without fine grained control, compares "breadcrumb" VS "toolbar" VS as many as you want
+*           .myClass {
+*               @include z-index-below( $z-index-breadcrumb, $z-index-toolbar );
+*               background-color: #ffffff;
+*           }
+*
+*        Example C-2.1
+*        With fine grained control
+*        Notice: It returns a different value than C-1.2,
+*        Uses breadcrumb as a base and fine grains it with toolbar, then it returns a sliglty lower value than that
+*        the use of the parenthesis has a similar meaning as in example A-2.
+*        Please refer to z-index-below documentation for more information.
+*           .myClass {
+*               @include z-index-below( ($z-index-breadcrumb, $z-index-toolbar) );
+*               background-color: #ffffff;
+*           }
+
+*        Example C-2.2
+*        With and without fine grained control
+*        Notice: It returns a different value than C-1.2,
+*        This dummy example uses breadcrumb as a base and fine grains it with toolbar,
+*        then it compares that z-index with the one directly obtained from toolbar,
+*        and returns the lowest value - 1.
+*        The use of the parenthesis has a similar meaning as in example A-2.
+*        Please refer to z-index-below documentation for more information.
+*           .myClass {
+*               @include z-index-below( ($z-index-breadcrumb, $z-index-toolbar), $z-index-breadcrumb);
+*               background-color: #ffffff;
+*           }
+*
+*
+*   Debugging tip:
+*   Please, use the mixins instead of the functions they use because this way debugging gets easier, as we'll always add a custom CSS property
+*   which will have no effect at all on the rendered result but which will tell you which classes and function where used to obtain that z-index
+*   That special property is called -fnd-zindex
+*
+*   "ground" :
+*   Notice the category "ground". Try to make use of it instead of adding too many new categories to $z-index-hierarchy since in many
+*   scenarios you will be able to manage your z-indices just by using the existing set of categories and calling _z-index with 2 parameters
+*   for example: _z-index("ground", "level-3)
+*
+*   "underground" :
+*   Notice the special category "underground" whose mission is just to get a negative z-index to send your desired target behind all layers.
+*
+*   "top" :
+*   Notice the category "top" which won't return a value using the same delta between steps as all other categories, but a very high value
+*   instead. It should not be used too often, only in the case that some third party plugin doesn't leave you any other option or in case
+*   you need to develop something in fullscreen mode.
+*
+********************************************************************************************************************************************/
+
+// Definition of variables used in z-index-hierarchy, just to help intellisense. Define a new class here and add it to $z-index-hierarchy
+$z-index-top: "top";
+$z-index-message: "message";
+$z-index-dropdown: "dropdown";
+$z-index-contact-widget: "contact-widget";
+$z-index-dialog: "dialog";
+$z-index-shell-header: "shell-header";
+$z-index-navigator: "navigator";
+$z-index-breadcrumb: "breadcrumb";
+$z-index-search-panel: "search-panel";
+$z-index-toolbar: "toolbar";
+$z-index-card: "card";
+$z-index-header: "header";
+$z-index-level-5: "level-5";
+$z-index-level-4: "level-4";
+$z-index-level-3: "level-3";
+$z-index-level-2: "level-2";
+$z-index-level-1: "level-1";
+$z-index-ground: "ground";
+$z-index-underground: "underground";
+
+/**********************************************************************
+ * Changes in hierarchy:
+ * - z-index-contact widget has to be over z-index-dialog because contact widget in cards
+ *   would get behind the card otherwise (TEUXX-9150)
+ ***********************************************************************/
+/* Array of all z-index classes sorted by hierarchy (higher ranked on top) */
+$z-index-hierarchy: (
+    $z-index-top, /* Must be the first class always. Do not add any class before it */
+    $z-index-message,
+    $z-index-dropdown,
+    $z-index-contact-widget,
+    $z-index-dialog,
+    $z-index-shell-header,
+    $z-index-navigator,
+    $z-index-breadcrumb,
+    $z-index-search-panel,
+    $z-index-toolbar,
+    $z-index-header,
+    $z-index-card,
+    $z-index-level-5,
+    $z-index-level-4,
+    $z-index-level-3,
+    $z-index-level-2,
+    $z-index-level-1,
+    $z-index-ground, /* Do not add any class after it */
+    $z-index-underground /* Do not add any class after it */
+);
+
+
+$z-index-keys: (
+    $z-index-top: "$z-index-top",
+    $z-index-message: "$z-index-message",
+    $z-index-dropdown: "$z-index-dropdown",
+    $z-index-contact-widget: "$z-index-contact-widget",
+    $z-index-dialog: "$z-index-dialog",
+    $z-index-shell-header: "$z-index-shell-header",
+    $z-index-navigator: "$z-index-navigator",
+    $z-index-breadcrumb: "$z-index-breadcrumb",
+    $z-index-search-panel: "$z-index-search-panel",
+    $z-index-toolbar: "$z-index-toolbar",
+    $z-index-header: "$z-index-header",
+    $z-index-card: "$z-index-card",
+    $z-index-level-5: "$z-index-level-5",
+    $z-index-level-4: "$z-index-level-4",
+    $z-index-level-3: "$z-index-level-3",
+    $z-index-level-2: "$z-index-level-2",
+    $z-index-level-1: "$z-index-level-1",
+    $z-index-ground: "$z-index-ground",
+    $z-index-underground: "$z-index-underground"
+);
+// Last value should get z-index < 0, value before last should get z-index 0 therefore "ground" and "underground"
+
+
+/**
+ * Adds a z-index for the category(-ies) provided as argument(s) based on its(their) position in the array $z-index-hierarchy,
+ * as well as a proprietary property for debugging purpouses.
+ */
+@mixin z-index($key1, $key2: null) {
+    @if ($key2 == null) {
+        & {
+            -fnd-zindex: zindex-fingerprint("z-index", $key1);
+            z-index: _z-index($key1);
+        }
+    }
+    @else {
+        $tmp: "-unknown-";
+        @if (map-has-key($z-index-keys, $key1) and map-has-key($z-index-keys, $key2)) {
+          $tmp: "z-index(" + map-get($z-index-keys, $key1) + ", " + map-get($z-index-keys, $key2) + ")";
+        }
+        & {
+            -fnd-zindex: $tmp;
+            z-index: _z-index($key1, $key2);
+        }
+    }
+}
+
+
+/**
+ * Adds a z-index which is higher than the highest z-index defined by the categories in the input $list,
+ * as well as a proprietary property for debugging purposes.
+ *
+ * Takes a list of $z-index variables comma-separated, in case you want to refer
+ * to a fined-grained z-index, for instance $z-index-level-2 "in the context of" $z-index-header
+ * you shall provide that context within a parenthesis
+ *
+ * Example:
+ * Get z-index above the highest among $z-index-dialog and $z-index-header
+ * @include z-index-above ( $z-index-dialog, $z-index-header );
+ *
+ * Example with fined-grained control:
+ * Get z-index above the highest among $z-index-dialog and $z-index-header
+ * but $z-index-header is fine grained by $z-index-level-2,
+ * which is slightly higher than $z-index-header by itself,
+ * so what you are comparing is something like $z-index-dialog VS $z-index-header+
+ *
+ * @include z-index-above (
+ *   $z-index-dialog,
+ *   ($z-index-header, $z-index-level-2)
+ * );
+ *
+ */
+@mixin z-index-above($list...) {
+    & {
+        -fnd-zindex: zindex-fingerprint("z-index-above", $list...);
+        z-index: fnd-z-index-above($list...);
+    }
+}
+
+/**
+ * Adds a z-index which is lower than the lowest z-index defined by the categories in the input $list,
+ * With this function you can make sure that something comes under some given classes even if their predefined priority changes in the future.
+ *
+ * Provide a list of $z-index variables comma-separated, in case you want to refer
+ * to a fined-grained z-index, for instance $z-index-level-2 "in the context of" $z-index-header
+ * you shall provide that context within a parenthesis
+ *
+ * Example:
+ * Get z-index below the lowest among $z-index-dialog and $z-index-header
+ * @include z-index-below ( $z-index-dialog, $z-index-header );
+ *
+ * Example with fined-grained control:
+ * Get z-index below the lowest among $z-index-dialog and $z-index-header
+ * but $z-index-header is fine grained by $z-index-level-2
+ * which is slightly higher than $z-index-header by itself,
+ * so what you are comparing is something like $z-index-dialog VS $z-index-header+
+ *
+ * @include z-index-below (
+ *   $z-index-dialog,
+ *   ($z-index-header, $z-index-level-2)
+ * );
+ */
+@mixin z-index-below($list...) {
+    & {
+        -fnd-zindex: zindex-fingerprint("z-index-below", $list...);
+        z-index: fnd-z-index-below($list...);
+    }
+}
+
+
+/**
+* This function will just get a fingerprint which can be used within a mixing to explain what we have done
+* Usage example:
+* --fnd-zindex: zindex-fingerprint("z-index-below", $list...);
+*
+* Produces something that may look like:
+* --fnd-zindex: 'z-index-below("ground", ("dialog, "level-3"), "dropdown")'
+*/
+@function zindex-fingerprint($functionName, $list...) {
+    $str: "";
+    $comma: "";
+    @each $param in $list {
+        $tmp: "";
+        @if (type-of($param) == list or type-of($value: ($param) == arglist)) {
+            @if (length($param) > 1) {
+                $tmp: "(" + implode($param) + ")";
+            }
+            @else {
+                @if (map-has-key($z-index-keys, $param)) {
+                  $tmp: map-get($z-index-keys, $param);
+                }
+                @else {
+                  $tmp: '"' + $param + '"';
+                }
+            }
+        }
+        @else {
+          @if (map-has-key($z-index-keys, $param)) {
+            $tmp: map-get($z-index-keys, $param);
+          }
+          @else {
+            $tmp: '"' + $param + '"';
+          }
+        }
+        $str: $str + $comma + $tmp;
+        @if ($comma == "") {
+            $comma: ", ";
+        }
+    }
+
+    @return "#{$functionName}(#{$str})";
+}
+
+
+@function implode($list...) {
+  $output: "";
+  $comma: "";
+  @each $param in $list {
+    @if (type-of($param) == list) {
+      $output: implode($param...);
+    } @else {
+        @if (map-has-key($z-index-keys, $param)) {
+          $output: $output + $comma + map-get($z-index-keys, $param);
+        }
+        @else {
+          $output: $output + $comma + '"' + $param + '"';
+        }
+        @if ($comma == "") {
+          $comma: ", ";
+        }
+    }
+  }
+  @return $output;
+}
+
+
+/**
+ * Use @include z-index() instead, which will internally call this function and add more information.
+ */
+@function _z-index($key1, $key2: null) {
+    /* Reversing $z-index-hierarchy because higher ranking should mean higher position in the array since the entire logic will be based on that. */
+    $z-indices: ();
+    @for $i from length($z-index-hierarchy) * -1 through -1 {
+      $z-indices: append($z-indices, nth($z-index-hierarchy, abs($i)));
+   }
+
+    /* Each step leaves enough space for a sublevel specified by $key2. This way we don't need to change this factor if more values are added into the array */
+    $firstLevelFactor: length($z-indices);
+
+    $found-index: index($z-indices, $key1);
+    @if ($found-index != null) {
+
+        @if ($key1 == "top") {
+            $found-index: 100000;
+        }
+        @else {
+            $found-index: $firstLevelFactor * ($found-index - 2); // -2 to make "ground" = 0, and "underground" < 0
+        }
+
+
+        @if ($key2) {
+            $sub-index: (index($z-indices, $key2) );
+            @if ($sub-index != null) {
+                $found-index: $found-index + $sub-index;
+            }
+            @else {
+                @error "Second parameter `#{$key2}` is not defined in $z-index-hierarchy therefore _z-index function cannot return a valid result. Please check _z-index.scss to see available categories and look in your code for the regexp z\\-index(\\-above|\\-below)?\\s*\\(+[^\\)]+\\s*,[\\s'\"]+\\b#{$key2}\\b";
+            }
+        }
+    }
+
+    @else {
+        @error "First parameter `#{$key1}` is not defined in $z-index-hierarchy therefore _z-index function cannot return a valid result. Please check _z-index.scss to see available categories and look in your code for the regexp z\\-index(\\-above|\\-below)?\\s*\\(+[^\\)]+\\b#{$key1}\\b";
+    }
+
+    @return $found-index;
+}
+
+
+/**
+ * Use @include z-index-above() instead, which will internally call this function and add more information.
+ *
+ * Returns the highest _z-index defined by the classes in the list + 1.
+ * With this function you can make sure that something comes over some given classes even if their predefined priority changes in the future.
+ *
+ * Usage example:
+ * z-index: z-index-above( ("dialog", "header") );
+ */
+@function fnd-z-index-above($listToAvoid...) {
+  $maxIndex: 0;
+  @each $avoidClass in $listToAvoid {
+    $thisIndex: _z-index($avoidClass...);
+    @if ($thisIndex != null) {
+        @if ($thisIndex > $maxIndex) {
+            $maxIndex: $thisIndex;
+        }
+    }
+  }
+  @return $maxIndex + 1;
+}
+
+
+/**
+ * Use @include z-index-below() instead, which will internally call this function and add more information.
+ *
+ * Returns the lowest _z-index defined by the classes in the list - 1.
+ * With this function you can make sure that something comes under some given classes even if their predefined priority changes in the future.
+ *
+ * Usage example:
+ * z-index: zindex-below( ("dialog", "header") );
+ */
+@function fnd-z-index-below($listToAvoid...) {
+  $minIndex: null;
+  @each $avoidClass in $listToAvoid {
+    $thisIndex: _z-index($avoidClass...);
+    @if ($minIndex == null) {
+        $minIndex: $thisIndex;
+    }
+    @else {
+        @if ($thisIndex != null) {
+            @if ($thisIndex < $minIndex) {
+                $minIndex: $thisIndex;
+            }
+        }
+    }
+  }
+  @return $minIndex - 1;
+}

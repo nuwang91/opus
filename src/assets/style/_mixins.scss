@@ -1,0 +1,427 @@
+@import 'direction';
+
+@mixin display-flex() {
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+@mixin display-inline-flex() {
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -moz-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+}
+
+@mixin display-flex-important() {
+    display: -webkit-flex !important;
+    display: -moz-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+@mixin flex-direction($direction) {
+    -webkit-flex-direction: $direction;
+    -ms-flex-direction: $direction;
+    flex-direction: $direction;
+}
+
+@mixin flex-wrap($wrap) {
+    -webkit-flex-wrap: $wrap;
+    -ms-flex-wrap: $wrap;
+    flex-wrap: $wrap;
+}
+
+@mixin flex($params) {
+    -ms-flex: $params;
+    -webkit-flex: $params;
+    flex: $params;
+}
+
+@mixin text-overflow() {
+    overflow: hidden;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@mixin box-shadow($left, $top: "", $blur: "", $spread: "", $color: transparentize($color-ifs-black, 0.75), $inset: "") {
+    @if($left == none) {
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    } @else {
+        -webkit-box-shadow: $left $top $blur $spread $color #{$inset};
+        -moz-box-shadow: $left $top $blur $spread $color #{$inset};
+        box-shadow: $left $top $blur $spread $color #{$inset};
+    }
+}
+
+@mixin user-select($mode: none) {
+    -moz-user-select: $mode;
+    -ms-user-select: $mode;
+    -webkit-user-select: $mode;
+    user-select: $mode;
+}
+
+@mixin blur($radius) {
+    filter: blur($radius);
+    -webkit-filter: blur($radius);
+    -moz-filter: blur($radius);
+    -o-filter: blur($radius);
+    -ms-filter: blur($radius);
+}
+
+@mixin transform($value) {
+    -webkit-transform: $value;
+    -moz-transform:    $value;
+    -ms-transform:     $value;
+    -o-transform:      $value;
+    transform:         $value;
+}
+
+// We use this to add single or multiple transitions to elements
+// $property - Default: all, Options: http://www.w3.org/TR/css3-transitions/#animatable-properties
+// $speed - Default: 200ms
+// $ease - Default: ease-out, Options: http://css-tricks.com/almanac/properties/t/transition-timing-function/
+// $delay - Default: null (0s)
+@mixin transition($property:all, $speed:200ms, $ease:ease-out, $delay:null) {
+    $transition: none;
+    $_property: none;
+    $_speed: none;
+    $_ease: none;
+    $_delay: none;
+
+    @if length($property) > 1 {
+
+        @each $transition_list in $property {
+
+            @for $i from 1 through length($transition_list) {
+
+                @if $i == 1 {
+                    $_property: nth($transition_list, $i);
+                }
+
+                @if length($transition_list) > 1 {
+                    @if $i == 2 {
+                        $_speed: nth($transition_list, $i);
+                    }
+                } @else {
+                    $_speed: $speed;
+                }
+
+                @if length($transition_list) > 2 {
+                    @if $i == 3 {
+                        $_ease: nth($transition_list, $i);
+                    }
+                } @else {
+                    $_ease: $ease;
+                }
+
+                @if length($transition_list) > 3 {
+                    @if $i == 4 {
+                        $_delay: nth($transition_list, $i);
+                    }
+                } @else {
+                    $_delay: $delay;
+                }
+            }
+
+            @if $transition == none {
+                $transition: $_property $_speed $_ease $_delay;
+            } @else {
+                $transition: $transition, $_property $_speed $_ease $_delay;
+            }
+        }
+    }
+    @else {
+
+        @each $prop in $property {
+
+            @if $transition == none {
+                $transition: $prop $speed $ease $delay;
+            } @else {
+                $transition: $transition, $prop $speed $ease $delay;
+            }
+        }
+    }
+
+    transition: $transition;
+}
+
+// We use this to create isosceles triangles
+// $triangle-size - Used to set border-size. No default, set a px or em size.
+// $triangle-color - Used to set border-color which makes up triangle. No default
+// $triangle-direction - Used to determine which direction triangle points. Options: up, down, left, right
+@mixin css-triangle($triangle-size, $triangle-color, $triangle-direction) {
+    border: inset $triangle-size;
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    @if ($triangle-direction == down) {
+        border-color: $triangle-color transparent transparent transparent;
+        border-top-style: solid;
+    }
+    @if ($triangle-direction == up) {
+        border-color: transparent transparent $triangle-color transparent;
+        border-bottom-style: solid;
+    }
+    @if ($triangle-direction == right) {
+        border-color: transparent transparent transparent $triangle-color;
+        border-left-style: solid;
+    }
+    @if ($triangle-direction == left) {
+        border-color: transparent $triangle-color transparent transparent;
+        border-right-style: solid;
+    }
+
+    @if ($triangle-direction == top-left) {
+        border-color: $triangle-color transparent transparent $triangle-color;
+        border-top-style: solid;
+        border-left-style: solid;
+    }
+
+    @if ($triangle-direction == top-right) {
+        border-color: $triangle-color $triangle-color transparent transparent;
+        border-top-style: solid;
+        border-right-style: solid;
+    }
+
+    @if ($triangle-direction == bottom-left) {
+        border-color: transparent transparent $triangle-color $triangle-color;
+        border-bottom-style: solid;
+        border-left-style: solid;
+    }
+
+    @if ($triangle-direction == bottom-right) {
+        border-color: transparent $triangle-color $triangle-color transparent;
+        border-bottom-style: solid;
+        border-right-style: solid;
+    }
+}
+
+@mixin circle($size:40px,$color:#FFFFFF) {
+     width: $size;
+     height: $size;
+     border-radius: 100%;
+     background: $color;
+     color: $color;
+}
+
+@mixin appearance($value: none) {
+    -webkit-appearance: $value;
+    -moz-appearance:    $value;
+    appearance:         $value;
+}
+
+@mixin spinner($width, $height, $borderSize: 0.4rem, $color: $color-ifs-gray, $keyframeName: spin) {
+    border: $borderSize solid transparentize($color, 0.8);
+    border-left-color: $color;
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: $keyframeName 1.1s infinite linear;
+    animation: $keyframeName 1.1s infinite linear;
+    border-radius: 50%;
+    width: $width;
+    height: $height;
+}
+
+@mixin rotate($degrees) {
+    -webkit-transform: rotate($degrees);
+    -moz-transform: rotate($degrees);
+    -ms-transform: rotate($degrees);
+    -o-transform: rotate($degrees);
+    transform: rotate($degrees);
+}
+
+@mixin disableSelection($value: none) {
+    -webkit-touch-callout: $value;
+    -webkit-user-select: $value;
+    -khtml-user-select: $value;
+    -moz-user-select: $value;
+    -ms-user-select: $value;
+    user-select: $value;
+    outline: $value;
+}
+
+@mixin speech-bubble($size, $background, $top: 15px, $border-width: 2, $right-arrow:false)
+{
+  border: 1px solid $background;
+  position: relative;
+  margin-inline-start: $size + ($border-width * 0.5);
+  box-shadow: 0 2px 2px rgba(0,0,0,0.15);
+  margin-inline-end: 4px;
+  margin-bottom: 4px;
+  padding: 1px 1em;
+  background: $background;
+
+   @if $right-arrow == true {
+        &:before
+        {
+            content: "";
+            position: absolute;
+            @include inset-inline-end(-$size);
+            top: 12px;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            border-top: ($size * 0.5) solid transparent;
+            border-left: $size solid $background;
+            border-bottom: ($size * 0.5) solid transparent;
+        }
+   }
+   @else {
+        &:after
+        {
+            content: "";
+            position: absolute;
+            @include inset-inline-start(-$size);
+            top: 12px;
+            transform: translateY(-50%);
+            -webkit-transform: translateY(-50%);
+            border-top: ($size * 0.5) solid transparent;
+            border-right: $size solid $background;
+            border-bottom: ($size * 0.5) solid transparent;
+        }
+   }
+}
+
+
+@mixin text-align($align: end) {
+    text-align: $align;
+
+    // Hack for MS Edge because it doesn't support yet values "start" and "end"
+    // latest tested version: 16.16299
+    @supports (-ms-ime-align:auto) {
+        @if $align == end {
+            text-align: right;  /* stylelint-disable-line csstools/use-logical */
+        }
+        @if $align == start {
+            text-align: left;   /* stylelint-disable-line csstools/use-logical */
+        }
+    }
+}
+
+@mixin font-size-line-height($height) {
+    font-size: $height;
+    line-height: $height;
+}
+
+/**
+ * Set sticky position
+ */
+ @mixin position-sticky() {
+    position: -webkit-sticky;
+    position: sticky;
+}
+
+/**
+ * Set vertical scrolling on element, with themed styling of scrollbars.
+ * Scrollbars are hidden by default and appears when element is hovered,
+ * unless `$autoHide` parameter is supplied as `false`.
+ */
+@mixin themedVerticalScroll($autoHide: true, $scrollGutter: auto) {
+    overflow-x: hidden;
+
+    @if $autoHide {
+        // With autohide scroll is visible when hover.
+        // When run by a test runner (e.g. cypress) scroll should always be visible.
+        // --scroll-autohide-hidden initiated in BrowerDocumentService will have value 'hidden' or for test runner 'auto'
+        overflow-y: var(--scroll-autohide-hidden, hidden);
+
+        &:hover {
+            overflow-y: auto;
+        }
+
+        // Use of scroll gutter and autohide, set background to same as
+        // gutter color so that the gutter keep the same color as the scrollbar.
+        @if $scrollGutter != auto {
+            @include fnd-theme(background-color, --granite-color-background-hover);
+        }
+    }
+
+    @else {
+        overflow-y: auto;
+    }
+
+    scrollbar-gutter: $scrollGutter;
+
+    // Custom look on the vertical scrollbar
+    &::-webkit-scrollbar {
+        width: var(--granite-spacing-s);
+    }
+
+    &::-webkit-scrollbar-thumb {
+        @include fnd-theme(
+            background-color, --granite-color-border-hard);
+            border-radius: var(--granite-radius-l);
+        &:hover {
+            @include fnd-theme(
+                background-color,--granite-color-border-hard);
+        }
+    }
+
+    &::-webkit-scrollbar-track {
+        @include fnd-theme(
+            background-color, --granite-color-background-hover);
+    }
+
+    // Bellow is used troughout FW scroll implementations
+    // but missing in this mixin. Is this an oversight or correct?
+
+    // this flag is needed because of a bug in chrome with infinite scroll, https://developers.google.com/web/updates/2016/04/scroll-anchoring
+    // overflow-anchor: none;
+    // For smooth scrolling on ios
+    // -webkit-overflow-scrolling: touch;
+
+    // TEUXX-10795: Scrolling in a mobile device is shaky if overflow-y is hidden
+    // requiring a long press. But adding overflow-y: auto for those devices, doesn't
+    // force any scrollbar (the OS is handling that itself). We still don't want to add
+    // this rule by default, so desktop browsers doesn't get the scrollbar all the time
+    // &.mobile-device {
+    //     overflow-y: auto;
+    // }
+}
+
+/*
+* This mixin can be used with properties where you can directly replace the default css variable from
+* a custom branding css variable. ex: background-color, color, background-image
+* $is-root-var should be set to false if the $default-var is a property declaration(ex: $ifs-color-white)
+* instead of a css root variable (ex: --ifs-header-color)
+*/
+@mixin fnd-branding-common($property, $branding-var, $default-var, $is-root-var: true) {
+    @if $is-root-var {
+        #{$property}: var(#{$branding-var}, var(#{$default-var}));
+    }
+    @else {
+        #{$property}: var(#{$branding-var}, $default-var);
+    }
+}
+
+@mixin fnd-branding-text($branding-var, $default-var) {
+    content: var(#{$branding-var}, #{$default-var});
+}
+
+/*
+* Comapred to other mixins, we are using sass variables here instead of css variable for the font-family.
+* So no need to use var()
+*/
+@mixin fnd-branding-font($branding-var, $default-var) {
+    font-family: $branding-var, $default-var;
+}
+
+@mixin outline(
+  $offset: 0,
+  $width: 0.0625rem,
+  $color: --granite-color-focus,
+  $style: solid
+) {
+  outline-offset: $offset;
+  outline-width: $width;
+  outline-color: var($color);
+  outline-style: $style;
+}
+

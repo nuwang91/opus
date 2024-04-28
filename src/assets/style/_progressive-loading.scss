@@ -1,0 +1,166 @@
+/**
+ * Add ghost ui when element is empty (missing children).
+ * A shimmer effect will appear and portray loading.
+ * Best effect gained from when the shimmer effect is a slightly
+ * darker tone of the background color.
+ */
+@mixin skeleton-ui-when-empty(
+        $background-color: --granite-theme-skeleton-background-color,
+        $animation-speed: 4s,
+        $animation-delay: 0s,
+        $height: auto,
+        $width: auto  // Do not set if not provided
+    ) {
+    &:not(:empty) {
+        animation: fadeIn 2s;   // fade in the new style (including its content)
+    }
+
+    &:empty {
+        @if $height != auto { // Do not set if not provided
+            height: $height;
+        }
+        @if $width != auto {  // Do not set if not provided
+            width: $width;
+        }
+        @include skeleton-ui-shimmer-animation($background-color,
+            $animation-speed,
+            $animation-delay
+        );
+    }
+}
+
+/**
+ * Add ghost ui shimmer animation to portray loading.
+ * Inspired by https://codepen.io/JCLee/pen/dyPejGV.
+ * May require:
+ * display: inline-block;
+ * Color must be in fnd-color value format!
+ */
+@mixin skeleton-ui-shimmer-animation(
+        $background-color: --granite-theme-skeleton-background-color,
+        $animation-speed: 4s,
+        $animation-delay: 0s
+    ) {
+
+    @include fnd-theme(background-color, --granite-theme-skeleton-background-color);
+
+    overflow: hidden;
+    position: relative; // keep shimmer height within parent
+    pointer-events: none;   // shouldn't be able to click element while loading
+
+    &::after {  // shimmer - moving background image
+        position: absolute;
+        top: 0;
+        right: 0;   /* stylelint-disable-line csstools/use-logical */
+        bottom: 0;
+        left: 0;    /* stylelint-disable-line csstools/use-logical */
+        transform: translateX(-100%);
+
+        @include fnd-themed-background-image-gradient(90deg,
+            --granite-theme-skeleton-shimmer-color-zero 0%,
+            --granite-theme-skeleton-shimmer-color-twenty 20%,
+            --granite-theme-skeleton-shimmer-color-forty 40%,
+            --granite-theme-skeleton-shimmer-color-sixty 60%,
+            --granite-theme-skeleton-shimmer-color-eighty 80%,
+            --granite-theme-skeleton-shimmer-color-hundred 100%
+        );
+
+        animation-delay: $animation-delay;
+        will-change: transform;     // Browser optimization of properties changing during animation (delegate to GPU).
+        animation: shimmer $animation-speed infinite;
+        content: '';
+    }
+}
+
+@keyframes shimmer {
+    100% {
+      transform: translateX(100%);
+    }
+}
+
+/**
+ * Fast animation effect for ghost ui - used in navigation menu.
+ * In the future, it's likely that we should choose between this one and the one above.
+ */
+ @mixin skeleton-animation-fast($base-color: rgba(255,255,255,0.1), $ghost-color: rgba(43, 58, 65, 0.3)) {
+    background-image:
+        linear-gradient(0.25turn, transparent, $ghost-color, transparent),
+        linear-gradient($base-color, 20px, transparent),
+        linear-gradient($base-color, 20px, transparent)
+    ;
+
+    background-position:
+        -20% 0,
+        12px 18px,
+        12px 32px
+    ;
+
+    background-size:
+        48px 48px,
+        224px 8px,
+        204px 8px
+    ;
+
+    background-repeat: no-repeat;
+    will-change: background-position;
+    animation: _loading 2.8s infinite;
+}
+
+@keyframes _loading {
+    to {
+        background-position:
+        220% 0,
+        12px 18px,
+        12px 32px
+        ;
+    }
+}
+
+/**
+ * Default breathe animation. Background has a breathing effect.
+ */
+@mixin breathe-ease-in-out($duration: 3.5s, $delay: 0s) {
+    animation: breathe-ease-in-out $duration infinite;
+    will-change: opacity;
+    animation-delay: $delay;
+}
+
+@keyframes breathe-ease-in-out {
+    0% {
+      opacity: 0.85;
+    }
+    50% {
+      opacity: 0.25;
+    }
+    100% {
+      opacity: 0.85;
+    }
+}
+
+/**
+ * Skeleton UI with breathe animation.
+ * Useful in scenarios where we wish to control the height of the background.
+ * Typical use case is input-field. Where we wish to show a placeholder which's
+ * height is smaller than the height of the element.
+ */
+@mixin skeleton-ui-breathe-in-out($background-height: 100%) {
+    @include fnd-themed-background-image-gradient(
+        to right,
+        --granite-theme-skeleton-breathe-animation-background-color,
+        --granite-theme-skeleton-breathe-animation-background-color
+    );
+
+    @if ($background-height != 100%) {
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: 100% $background-height;
+    }
+    @include breathe-ease-in-out();
+}
+
+@mixin fadeInWhenNotEmpty() {
+    &:not(:empty) {
+        will-change: opacity;
+        animation: fadeIn 2s;
+    }
+}

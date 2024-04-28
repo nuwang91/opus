@@ -1,0 +1,29 @@
+@import "include";
+
+// Mixins related to the Arrange component
+
+// The total height of components in a column determines the base height
+// of that column. If the columns does not have equal height, the last
+// component of the smaller column (unless collapsed) grows to the height
+// of the largest one, giving the columns the same height. This to prevent
+// "holes" that would otherwise show up in the design.
+//
+// Fiddle here: https://jsfiddle.net/uvkorttd/
+//
+// For this to work, we have to adjust the host and group class
+// of supported components.
+@mixin fill-arrange-height() {
+    :host-context(fnd-arrange) {
+        @include display-flex;
+        @include flex(1);
+
+        // Make truncation work as expected with flexbox child sub elements
+        min-width: 0; // https://css-tricks.com/flexbox-truncated-text/
+
+        fnd-collapsible-group {
+            @include display-flex; // Make sure child collapsible group can stretch height (flex: 1) to fill the arrange block
+            @include flex(inherit);
+            min-width: 0;
+        }
+    }
+}
